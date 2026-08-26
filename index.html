@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Три плана игровой сцены</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--text:#1f2430;--muted:#6b7280;--line:#dfe3ea;--accent:#6d5dfc;--front:#fff1dd;--middle:#eaf7ef;--back:#eef2ff}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--text)}
+.wrap{max-width:1080px;margin:0 auto;padding:28px 18px 48px}.top{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:18px}.eyebrow{font-size:12px;font-weight:800;letter-spacing:.08em;color:var(--accent)}h1{margin:4px 0 8px;font-size:32px;line-height:1.05}p{margin:0;color:var(--muted);line-height:1.5}.reset{border:1px solid var(--line);background:#fff;border-radius:12px;padding:11px 15px;font-weight:700;cursor:pointer}.pool,.zone{background:var(--card);border:1px solid var(--line);border-radius:18px}.pool{padding:16px;display:flex;flex-wrap:wrap;gap:10px;min-height:92px;margin-bottom:18px}.zones{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.zone{padding:15px;min-height:290px}.zone.front{background:var(--front)}.zone.middle{background:var(--middle)}.zone.back{background:var(--back)}.zone h2{font-size:20px;margin:0 0 4px}.zone small{display:block;color:var(--muted);margin-bottom:12px}.drop{min-height:210px;border:2px dashed rgba(80,90,110,.2);border-radius:14px;padding:10px;display:flex;flex-direction:column;gap:8px}.drop:empty:after{content:'Перетащи сюда';margin:auto;color:var(--muted);font-size:14px}.drop.over{border-color:var(--accent);background:rgba(109,93,252,.06)}
+.card{display:flex;align-items:center;gap:10px;border:1px solid var(--line);background:#fff;border-radius:13px;padding:9px 11px;min-height:54px;cursor:grab;user-select:none;box-shadow:0 1px 0 rgba(0,0,0,.03)}.card.sel{outline:2px solid var(--accent);outline-offset:2px}.icon{font-size:27px;width:34px;text-align:center}.name{font-weight:800}.hint{font-size:11px;color:var(--muted);margin-left:auto}.actions{display:flex;align-items:center;gap:12px;margin-top:18px;flex-wrap:wrap}.done{border:0;background:var(--accent);color:#fff;border-radius:12px;padding:12px 18px;font-weight:800;cursor:pointer}.status{font-size:14px;color:var(--muted)}.status.good{color:#16794a;font-weight:800}
+@media(max-width:760px){.zones{grid-template-columns:1fr}.top{align-items:stretch}.reset{white-space:nowrap}h1{font-size:28px}.zone{min-height:0}.drop{min-height:120px}.card{width:100%}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="top">
+    <div><div class="eyebrow">МИНИ-ПРАКТИКА</div><h1>Разложи объекты по планам</h1><p>Распредели все объекты между передним, средним и дальним планом. Единственного варианта может не быть.</p></div>
+    <button class="reset" id="reset">Сбросить</button>
+  </div>
+  <section class="pool" id="pool" aria-label="Объекты"></section>
+  <section class="zones">
+    <article class="zone front" data-zone="front"><h2>Передний план</h2><small>Ближе всего к зрителю</small><div class="drop"></div></article>
+    <article class="zone middle" data-zone="middle"><h2>Средний план</h2><small>Здесь обычно происходит действие</small><div class="drop"></div></article>
+    <article class="zone back" data-zone="back"><h2>Дальний план</h2><small>Создаёт окружение и масштаб</small><div class="drop"></div></article>
+  </section>
+  <div class="actions"><button class="done" id="done">Готово</button><div class="status" id="status">Распредели все 8 объектов.</div></div>
+</main>
+<script>
+const data=[['hero','🧙','Герой'],['bush','🌿','Куст'],['mountain','⛰️','Гора'],['cloud','☁️','Облако'],['enemy','👾','Враг'],['tree','🌳','Дерево'],['flower','🌼','Цветок'],['castle','🏰','Замок']];
+const pool=document.getElementById('pool'),status=document.getElementById('status');let selected=null;
+function makeCard([id,icon,name]){const b=document.createElement('button');b.type='button';b.className='card';b.draggable=true;b.dataset.id=id;b.innerHTML=`<span class="icon">${icon}</span><span class="name">${name}</span><span class="hint">переместить</span>`;b.addEventListener('dragstart',e=>{selected=b;e.dataTransfer.setData('text/plain',id);b.classList.add('sel')});b.addEventListener('dragend',()=>{b.classList.remove('sel');selected=null;document.querySelectorAll('.drop').forEach(x=>x.classList.remove('over'))});b.addEventListener('click',()=>{document.querySelectorAll('.card').forEach(x=>x.classList.remove('sel'));if(selected===b){selected=null;return}selected=b;b.classList.add('sel');status.textContent='Теперь нажми на нужный план.'});return b}
+data.forEach(x=>pool.appendChild(makeCard(x)));
+document.querySelectorAll('.zone').forEach(zone=>{const drop=zone.querySelector('.drop');drop.addEventListener('dragover',e=>{e.preventDefault();drop.classList.add('over')});drop.addEventListener('dragleave',()=>drop.classList.remove('over'));drop.addEventListener('drop',e=>{e.preventDefault();drop.classList.remove('over');if(selected)drop.appendChild(selected);selected=null;document.querySelectorAll('.card').forEach(x=>x.classList.remove('sel'));update()});zone.addEventListener('click',e=>{if(!selected||e.target.closest('.card'))return;drop.appendChild(selected);selected.classList.remove('sel');selected=null;update()})});
+function update(){const n=pool.querySelectorAll('.card').length;status.className='status';status.textContent=n?`Осталось распределить: ${n}.`:'Все объекты распределены.'}
+document.getElementById('reset').addEventListener('click',()=>{data.forEach(([id])=>pool.appendChild(document.querySelector(`[data-id="${id}"]`)));selected=null;document.querySelectorAll('.card').forEach(x=>x.classList.remove('sel'));status.className='status';status.textContent='Распредели все 8 объектов.'});
+document.getElementById('done').addEventListener('click',()=>{const n=pool.querySelectorAll('.card').length;if(n){status.className='status';status.textContent=`Осталось распределить: ${n}.`;return}status.className='status good';status.textContent='Готово! Сравните варианты в группе.'});
+</script>
+</body>
+</html>
