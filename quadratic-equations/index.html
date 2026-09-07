@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Интерактивный рабочий лист по теме «Квадратные уравнения»: теория, способы решения, тест и практика.">
+  <title>Квадратные уравнения - интерактивный рабочий лист</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="bg-shape bg-shape-one"></div>
+  <div class="bg-shape bg-shape-two"></div>
+
+  <header class="hero">
+    <div class="hero__inner">
+      <div class="hero__copy">
+        <div class="kicker">МАТЕМАТИКА • РАБОЧИЙ ЛИСТ</div>
+        <h1>Квадратные уравнения</h1>
+        <p class="hero__lead">Разберись, как устроено квадратное уравнение, научись выбирать способ решения и проверь себя на практике.</p>
+        <div class="hero__formula" aria-label="Формула квадратного уравнения">
+          <span class="formula-main">ax² + bx + c = 0</span>
+          <span class="formula-note">a ≠ 0</span>
+        </div>
+      </div>
+      <div class="hero__badge" aria-hidden="true">
+        <div class="hero__badge-small">ТЕМА</div>
+        <div class="hero__badge-big">x²</div>
+        <div class="hero__badge-line"></div>
+        <div class="hero__badge-small">до результата</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="student-card card" id="studentSection">
+      <div class="section-heading compact">
+        <div>
+          <div class="eyebrow">СТАРТ</div>
+          <h2>Кто проходит лист?</h2>
+        </div>
+        <div class="progress-pill"><span id="progressValue">0%</span> заполнено</div>
+      </div>
+      <div class="student-grid">
+        <label class="field">
+          <span>Имя и фамилия</span>
+          <input id="studentName" type="text" autocomplete="name" placeholder="Например, Анна Смирнова">
+        </label>
+        <label class="field">
+          <span>Класс / группа</span>
+          <input id="studentClass" type="text" placeholder="Например, 8Б">
+        </label>
+      </div>
+      <p class="microcopy">После ввода имени задания автоматически получат твой вариант. Он сохранится, даже если обновить страницу.</p>
+    </section>
+
+    <section class="card" id="theory">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">01 • ОСНОВА</div>
+          <h2>Что такое квадратное уравнение?</h2>
+        </div>
+      </div>
+      <div class="definition-box">
+        <div class="definition-box__mark">!</div>
+        <p><strong>Квадратное уравнение</strong> - это уравнение вида <strong>ax² + bx + c = 0</strong>, где <strong>a, b, c</strong> - числа, а <strong>a ≠ 0</strong>.</p>
+      </div>
+      <p class="body-text">Главный признак темы - неизвестное <strong>x</strong> встречается во второй степени. Коэффициент <strong>a</strong> не может быть равен нулю, иначе член с x² исчезнет и уравнение перестанет быть квадратным.</p>
+
+      <div class="coefficient-grid">
+        <article class="coefficient coefficient-a">
+          <div class="coefficient__symbol">a</div>
+          <div><h3>Старший коэффициент</h3><p>Стоит перед x² и определяет, как ведёт себя парабола.</p></div>
+        </article>
+        <article class="coefficient coefficient-b">
+          <div class="coefficient__symbol">b</div>
+          <div><h3>Коэффициент при x</h3><p>Стоит перед x. Может быть положительным, отрицательным или нулём.</p></div>
+        </article>
+        <article class="coefficient coefficient-c">
+          <div class="coefficient__symbol">c</div>
+          <div><h3>Свободный член</h3><p>Число без x. Оно тоже может быть равно нулю.</p></div>
+        </article>
+      </div>
+
+      <div class="example-strip">
+        <div class="example-strip__formula">-3x² + 5x - 7 = 0</div>
+        <div class="example-strip__items">
+          <span><b>a</b> = -3</span><span><b>b</b> = 5</span><span><b>c</b> = -7</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="types">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">02 • ВИДЫ</div>
+          <h2>Полное, неполное и приведённое</h2>
+        </div>
+      </div>
+      <p class="body-text">Нажимай на карточки. Внутри - короткое правило, пример и подсказка, как быстро узнать вид уравнения.</p>
+
+      <div class="accordion-grid">
+        <details class="accordion" open>
+          <summary><span>Полное квадратное уравнение</span><span class="accordion__plus">+</span></summary>
+          <div class="accordion__body">
+            <p>Все три коэффициента <strong>a, b и c не равны нулю</strong>.</p>
+            <div class="math-chip">2x² - 7x + 3 = 0</div>
+            <p class="tip">Проверка: есть x², есть x и есть отдельное число.</p>
+          </div>
+        </details>
+
+        <details class="accordion">
+          <summary><span>Неполное квадратное уравнение</span><span class="accordion__plus">+</span></summary>
+          <div class="accordion__body">
+            <p>Хотя бы один из коэффициентов <strong>b или c равен нулю</strong>.</p>
+            <div class="math-row"><span class="math-chip">3x² - 12 = 0</span><span class="math-chip">5x² + 10x = 0</span></div>
+            <p class="tip">Часто такие уравнения можно решить быстрее дискриминанта: вынесением x или переносом числа.</p>
+          </div>
+        </details>
+
+        <details class="accordion">
+          <summary><span>Приведённое квадратное уравнение</span><span class="accordion__plus">+</span></summary>
+          <div class="accordion__body">
+            <p>Старший коэффициент равен единице: <strong>a = 1</strong>.</p>
+            <div class="math-chip">x² + px + q = 0</div>
+            <p class="tip">Для такого уравнения особенно удобно использовать теорему Виета.</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="mini-check">
+        <div>
+          <h3>Быстрая проверка</h3>
+          <p>Какое из уравнений является приведённым?</p>
+        </div>
+        <div class="choice-line" data-quick-check>
+          <button type="button" data-value="a">2x² + x - 3 = 0</button>
+          <button type="button" data-value="b">x² - 6x + 5 = 0</button>
+          <button type="button" data-value="c">-x² + 4 = 0</button>
+        </div>
+        <div class="inline-feedback" id="quickFeedback" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="card" id="methods">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">03 • СПОСОБЫ РЕШЕНИЯ</div>
+          <h2>Как выбрать путь к корням?</h2>
+        </div>
+      </div>
+
+      <div class="method-map">
+        <div class="method-step"><span>1</span><div><b>Сначала посмотри на вид</b><p>Неполное уравнение иногда решается за пару действий.</p></div></div>
+        <div class="method-arrow">→</div>
+        <div class="method-step"><span>2</span><div><b>Если удобно - разложи</b><p>Вынеси общий множитель или разложи на множители.</p></div></div>
+        <div class="method-arrow">→</div>
+        <div class="method-step"><span>3</span><div><b>Универсальный путь</b><p>Дискриминант работает для любого квадратного уравнения.</p></div></div>
+        <div class="method-arrow">→</div>
+        <div class="method-step"><span>4</span><div><b>Для a = 1</b><p>Проверь, не находится ли пара корней по Виету.</p></div></div>
+      </div>
+
+      <div class="accordion-stack">
+        <details class="accordion method-card">
+          <summary><span>Дискриминант: универсальный алгоритм</span><span class="accordion__plus">+</span></summary>
+          <div class="accordion__body">
+            <div class="algorithm">
+              <div><span>1</span><p>Определи a, b и c.</p></div>
+              <div><span>2</span><p>Вычисли <strong>D = b² - 4ac</strong>.</p></div>
+              <div><span>3</span><p>Сравни D с нулём.</p></div>
+            </div>
+            <div class="root-cases">
+              <div><b>D &gt; 0</b><span>два корня</span></div>
+              <div><b>D = 0</b><span>один корень</span></div>
+              <div><b>D &lt; 0</b><span>действительных корней нет</span></div>
+            </div>
+            <div class="formula-panel">x₁,₂ = (-b ± √D) / 2a</div>
+          </div>
+        </details>
+
+        <details class="accordion method-card" open>
+          <summary><span>Теорема Виета: история про двух напарников</span><span class="accordion__plus">+</span></summary>
+          <div class="accordion__body">
+            <div class="story-box">
+              <div class="story-box__label">СЮЖЕТ</div>
+              <p>Представь, что корни x₁ и x₂ - два напарника, которых мы пока не знаем. У них есть две улики: <strong>вместе они дают нужную сумму</strong>, а <strong>при умножении - нужное произведение</strong>. Нужно найти пару чисел, которая одновременно подходит под обе улики.</p>
+            </div>
+            <p>Для приведённого уравнения <strong>x² + px + q = 0</strong>:</p>
+            <div class="vieta-rule">
+              <div><span>x₁ + x₂</span><b>= -p</b></div>
+              <div><span>x₁ · x₂</span><b>= q</b></div>
+            </div>
+            <div class="worked-example">
+              <div class="worked-example__title">Пример без раскрытия твоего задания</div>
+              <div class="math-chip">x² - 5x + 6 = 0</div>
+              <p>Нужны два числа, сумма которых равна 5, а произведение равно 6. Подходит пара 2 и 3, значит корни: x₁ = 2, x₂ = 3.</p>
+            </div>
+          </div>
+        </details>
+
+        <details class="accordion method-card">
+          <summary><span>Неполные уравнения: когда можно быстрее</span><span class="accordion__plus">+</span></summary>
+          <div class="accordion__body">
+            <div class="two-col-examples">
+              <div><b>Если c = 0</b><p>ax² + bx = 0</p><p>Вынеси x: x(ax + b) = 0.</p></div>
+              <div><b>Если b = 0</b><p>ax² + c = 0</p><p>Перенеси c и найди x².</p></div>
+            </div>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="card" id="testSection">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">04 • ПРОВЕРКА ТЕОРИИ</div>
+          <h2>Мини-тест: 5 вопросов</h2>
+        </div>
+        <div class="variant-badge">Вариант <span id="variantNumber">-</span></div>
+      </div>
+      <p class="body-text">Вопросы выбираются из банка после ввода имени. Поэтому у соседей набор может отличаться.</p>
+      <div id="testContainer" class="test-list"></div>
+    </section>
+
+    <section class="card practice-card" id="practiceSection">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">05 • ПРАКТИКА</div>
+          <h2>Задание 1. Теорема Виета</h2>
+        </div>
+        <div class="difficulty">без готового решения</div>
+      </div>
+      <div class="task-intro">
+        <p>Реши своё приведённое квадратное уравнение. Заполняй только пропуски - готовая цепочка решения на странице не показана.</p>
+        <div class="task-equation" id="vietaEquation">Введи имя, чтобы получить вариант</div>
+      </div>
+      <div class="fill-grid" id="vietaFields">
+        <label class="field"><span>x₁ + x₂ =</span><input inputmode="decimal" id="vietaSum" type="text" placeholder="…"></label>
+        <label class="field"><span>x₁ · x₂ =</span><input inputmode="decimal" id="vietaProduct" type="text" placeholder="…"></label>
+        <label class="field"><span>x₁ =</span><input inputmode="decimal" id="vietaRoot1" type="text" placeholder="…"></label>
+        <label class="field"><span>x₂ =</span><input inputmode="decimal" id="vietaRoot2" type="text" placeholder="…"></label>
+      </div>
+      <div class="hint-line">Корни можно записать в любом порядке.</div>
+    </section>
+
+    <section class="card practice-card" id="discriminantSection">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">06 • ПРАКТИКА</div>
+          <h2>Задание 2. Дискриминант</h2>
+        </div>
+        <div class="difficulty">заполни алгоритм</div>
+      </div>
+      <div class="task-intro">
+        <p>Реши уравнение через дискриминант. Здесь нет выпадающих ответов: все значения нужно вычислить самостоятельно.</p>
+        <div class="task-equation" id="discEquation">Введи имя, чтобы получить вариант</div>
+      </div>
+      <div class="solution-flow">
+        <div class="flow-row">
+          <span class="flow-number">1</span>
+          <span class="flow-text">Коэффициенты:</span>
+          <label>a = <input id="discA" inputmode="decimal" type="text"></label>
+          <label>b = <input id="discB" inputmode="decimal" type="text"></label>
+          <label>c = <input id="discC" inputmode="decimal" type="text"></label>
+        </div>
+        <div class="flow-row">
+          <span class="flow-number">2</span>
+          <span class="flow-text">D = b² - 4ac =</span>
+          <input id="discD" inputmode="decimal" type="text" aria-label="Дискриминант">
+        </div>
+        <div class="flow-row">
+          <span class="flow-number">3</span>
+          <span class="flow-text">√D =</span>
+          <input id="discSqrt" inputmode="decimal" type="text" aria-label="Корень из дискриминанта">
+        </div>
+        <div class="flow-row">
+          <span class="flow-number">4</span>
+          <span class="flow-text">Корни:</span>
+          <label>x₁ = <input id="discRoot1" inputmode="decimal" type="text"></label>
+          <label>x₂ = <input id="discRoot2" inputmode="decimal" type="text"></label>
+        </div>
+      </div>
+      <div class="hint-line">Если корней два, порядок x₁ и x₂ не важен.</div>
+    </section>
+
+    <section class="card final-card" id="submitSection">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">ФИНИШ</div>
+          <h2>Отправить работу преподавателю</h2>
+        </div>
+      </div>
+      <p class="body-text">Перед отправкой проверь, что заполнены имя, тест и оба задания. После проверки ты увидишь общий результат, но правильные ответы к заданиям страница не покажет.</p>
+      <div class="submit-row">
+        <button class="primary-button" id="submitButton" type="button">Проверить и отправить</button>
+        <button class="secondary-button" id="saveButton" type="button">Сохранить черновик</button>
+        <div class="submit-status" id="submitStatus" aria-live="polite"></div>
+      </div>
+      <div class="result-panel" id="resultPanel" hidden>
+        <div class="result-score"><span id="resultScore">0</span><small>/ <span id="resultMax">0</span></small></div>
+        <div><h3 id="resultTitle">Результат</h3><p id="resultText"></p></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">Квадратные уравнения • интерактивный рабочий лист</footer>
+  <iframe name="submissionFrame" id="submissionFrame" class="hidden-frame" title="Отправка результатов"></iframe>
+  <script src="script.js"></script>
+</body>
+</html>
