@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Промежуточная рефлексия — Figma</title>
+<style>
+:root{
+  --bg:#f4f6fb;
+  --card:#ffffff;
+  --text:#202432;
+  --muted:#6f7585;
+  --line:#e2e6ef;
+  --accent:#6c5ce7;
+  --accent-soft:#efecff;
+  --good:#16875a;
+  --good-soft:#e9f7f1;
+  --bad:#c64b4b;
+  --bad-soft:#fff0f0;
+  --shadow:0 20px 60px rgba(35,39,55,.09);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:linear-gradient(180deg,#f7f8fc 0,#f2f4f9 100%);color:var(--text)}
+button,input{font:inherit}
+.wrap{max-width:920px;margin:0 auto;padding:28px 18px 52px}
+.hero{display:flex;justify-content:space-between;gap:24px;align-items:flex-start;margin-bottom:18px}
+.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;color:var(--accent);margin-bottom:8px}
+h1{font-size:clamp(30px,5vw,48px);line-height:1.02;margin:0 0 12px;letter-spacing:-.03em}
+.hero p{margin:0;color:var(--muted);font-size:16px;line-height:1.55;max-width:640px}
+.badge{flex:0 0 auto;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:12px 14px;font-weight:800;box-shadow:0 8px 30px rgba(40,45,60,.05)}
+.progress-shell{background:#e7eaf1;height:9px;border-radius:999px;overflow:hidden;margin:22px 0 10px}
+.progress{height:100%;width:0;background:var(--accent);border-radius:999px;transition:width .3s ease}
+.progress-row{display:flex;justify-content:space-between;gap:14px;font-size:13px;color:var(--muted);margin-bottom:18px}
+.quiz{display:grid;gap:16px}
+.question{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:var(--shadow);transition:border-color .2s ease,transform .2s ease}
+.question.done{border-color:#d9d2ff}
+.qtop{display:flex;gap:14px;align-items:flex-start;margin-bottom:16px}
+.num{width:36px;height:36px;border-radius:12px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-weight:900;flex:0 0 auto}
+.question h2{font-size:19px;line-height:1.35;margin:4px 0 0}
+.answers{display:grid;gap:10px}
+.answer{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;border:1px solid var(--line);background:#fff;border-radius:14px;padding:13px 14px;cursor:pointer;color:var(--text);transition:.18s ease}
+.answer:hover{border-color:#bdb4ff;background:#fbfaff}
+.answer:focus-visible{outline:3px solid rgba(108,92,231,.25);outline-offset:2px}
+.answer .letter{font-weight:900;color:var(--accent);min-width:22px}
+.answer.selected{border-color:var(--accent);background:var(--accent-soft)}
+.answer.correct{border-color:#94d7bc;background:var(--good-soft)}
+.answer.wrong{border-color:#efaaaa;background:var(--bad-soft)}
+.answer.reveal{border-color:#94d7bc;background:var(--good-soft)}
+.feedback{display:none;margin-top:12px;padding:12px 14px;border-radius:13px;font-size:14px;line-height:1.45}
+.feedback.show{display:block}
+.feedback.good{background:var(--good-soft);color:#126a49}
+.feedback.bad{background:var(--bad-soft);color:#a33b3b}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.primary,.secondary{border:0;border-radius:14px;padding:13px 18px;font-weight:800;cursor:pointer}
+.primary{background:var(--accent);color:#fff}
+.primary:disabled{opacity:.45;cursor:not-allowed}
+.secondary{background:#fff;border:1px solid var(--line);color:var(--text)}
+.result{display:none;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:26px;box-shadow:var(--shadow);margin-top:22px}
+.result.show{display:block}
+.score{font-size:52px;line-height:1;font-weight:900;letter-spacing:-.04em;margin:8px 0 10px}
+.result h2{margin:0;font-size:26px}
+.result p{color:var(--muted);line-height:1.55;margin:0 0 14px}
+.result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0}
+.stat{background:#f7f8fb;border:1px solid var(--line);border-radius:16px;padding:14px}
+.stat strong{display:block;font-size:24px;margin-bottom:3px}
+.stat span{font-size:13px;color:var(--muted)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:#262a36;color:#fff;padding:11px 15px;border-radius:12px;font-size:14px;opacity:0;pointer-events:none;transition:.2s ease;z-index:5}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(max-width:680px){
+  .hero{display:block}.badge{display:inline-block;margin-top:16px}.question{padding:18px}.result-grid{grid-template-columns:1fr}.wrap{padding-top:20px}.answer{padding:12px}
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div>
+      <div class="eyebrow">Промежуточная рефлексия</div>
+      <h1>Figma: стили и прототипирование</h1>
+      <p>Ответь на 7 коротких вопросов. Можно менять выбор до завершения квиза. После проверки увидишь результат и правильные ответы.</p>
+    </div>
+    <div class="badge">7 вопросов</div>
+  </section>
+
+  <div class="progress-shell" aria-hidden="true"><div class="progress" id="progress"></div></div>
+  <div class="progress-row"><span id="progressText">Отвечено 0 из 7</span><span id="percentText">0%</span></div>
+
+  <section class="quiz" id="quiz"></section>
+
+  <div class="actions">
+    <button class="primary" id="finish" disabled>Проверить ответы</button>
+    <button class="secondary" id="reset">Начать заново</button>
+  </div>
+
+  <section class="result" id="result" aria-live="polite">
+    <div class="eyebrow">Результат</div>
+    <h2 id="resultTitle">Квиз завершён</h2>
+    <div class="score" id="score">0 / 7</div>
+    <p id="resultText"></p>
+    <div class="result-grid">
+      <div class="stat"><strong id="correctStat">0</strong><span>верных ответов</span></div>
+      <div class="stat"><strong id="wrongStat">0</strong><span>ошибок</span></div>
+      <div class="stat"><strong id="rateStat">0%</strong><span>точность</span></div>
+    </div>
+    <div class="actions">
+      <button class="primary" id="copyResult">Скопировать результат</button>
+      <button class="secondary" id="again">Пройти ещё раз</button>
+    </div>
+  </section>
+</main>
+<div class="toast" id="toast">Скопировано</div>
+<script>
+const questions = [
+  {
+    q:'Что такое стили в Figma?',
+    answers:[
+      'Это набор сохранённых параметров для элементов дизайна: цвет, текст и эффекты.',
+      'Это инструмент для создания прототипов.',
+      'Это способ экспортировать проект в другие форматы.',
+      'Это функция для автоматического исправления ошибок в дизайне.'
+    ],
+    correct:0
+  },
+  {
+    q:'Зачем нужны стили в Figma?',
+    answers:[
+      'Для упрощения работы с макетом и поддержания единого визуального языка.',
+      'Для создания сложных анимаций.',
+      'Для написания кода внутри Figma.',
+      'Для работы с 3D-объектами.'
+    ],
+    correct:0
+  },
+  {
+    q:'Что из этого не относится к текстовому стилю?',
+    answers:[
+      'Размер шрифта.',
+      'Межбуквенное расстояние.',
+      'Насыщенность текста: Bold, Regular.',
+      'Положение текста на странице.'
+    ],
+    correct:3
+  },
+  {
+    q:'Что такое анимация на сайте?',
+    answers:[
+      'Динамическое изменение объектов или их свойств для улучшения взаимодействия с пользователем.',
+      'Способ изменения структуры страницы.',
+      'Функция изменения макета в реальном времени.',
+      'Метод оптимизации изображений.'
+    ],
+    correct:0
+  },
+  {
+    q:'Какое взаимодействие не входит в настройку на панели прототипирования в Figma?',
+    answers:[
+      'Переход между экранами (Navigate To).',
+      'Воспроизведение видео.',
+      'Анимация при наведении (Hover).',
+      'Прокрутка (Scroll).'
+    ],
+    correct:1
+  },
+  {
+    q:'Что такое скролл на странице?',
+    answers:[
+      'Взаимодействие, при котором пользователь перемещается по странице вверх или вниз.',
+      'Метод сохранения файлов в Figma.',
+      'Добавление новых слоёв в макет.',
+      'Редактирование текста на странице.'
+    ],
+    correct:0
+  },
+  {
+    q:'Какие элементы можно сохранять как стили в Figma?',
+    answers:[
+      'Цвета, текстовые стили, эффекты: тени и размытие.',
+      'Только цвета и текстовые стили.',
+      'Только текстовые стили.',
+      'Только эффекты: тени и размытие.'
+    ],
+    correct:0
+  }
+];
+
+const quiz = document.getElementById('quiz');
+const finish = document.getElementById('finish');
+const result = document.getElementById('result');
+const progress = document.getElementById('progress');
+const progressText = document.getElementById('progressText');
+const percentText = document.getElementById('percentText');
+const toast = document.getElementById('toast');
+let selected = Array(questions.length).fill(null);
+let checked = false;
+
+function render(){
+  quiz.innerHTML='';
+  questions.forEach((item,qi)=>{
+    const card=document.createElement('article');
+    card.className='question';
+    card.dataset.q=qi;
+    const top=document.createElement('div');
+    top.className='qtop';
+    top.innerHTML=`<div class="num">${qi+1}</div><h2>${item.q}</h2>`;
+    card.appendChild(top);
+    const answers=document.createElement('div');
+    answers.className='answers';
+    item.answers.forEach((text,ai)=>{
+      const btn=document.createElement('button');
+      btn.type='button';
+      btn.className='answer';
+      btn.innerHTML=`<span class="letter">${String.fromCharCode(97+ai)})</span><span>${text}</span>`;
+      btn.addEventListener('click',()=>choose(qi,ai));
+      answers.appendChild(btn);
+    });
+    card.appendChild(answers);
+    const fb=document.createElement('div');
+    fb.className='feedback';
+    card.appendChild(fb);
+    quiz.appendChild(card);
+  });
+  updateProgress();
+}
+
+function choose(qi,ai){
+  if(checked) return;
+  selected[qi]=ai;
+  const card=quiz.children[qi];
+  [...card.querySelectorAll('.answer')].forEach((b,i)=>b.classList.toggle('selected',i===ai));
+  card.classList.add('done');
+  updateProgress();
+}
+
+function updateProgress(){
+  const done=selected.filter(v=>v!==null).length;
+  const pct=Math.round(done/questions.length*100);
+  progress.style.width=pct+'%';
+  progressText.textContent=`Отвечено ${done} из ${questions.length}`;
+  percentText.textContent=pct+'%';
+  finish.disabled=done!==questions.length || checked;
+}
+
+function finishQuiz(){
+  if(selected.some(v=>v===null)) return;
+  checked=true;
+  let score=0;
+  questions.forEach((item,qi)=>{
+    const card=quiz.children[qi];
+    const buttons=[...card.querySelectorAll('.answer')];
+    const fb=card.querySelector('.feedback');
+    buttons.forEach((b,ai)=>{
+      b.classList.remove('selected');
+      b.disabled=true;
+      if(ai===item.correct) b.classList.add('reveal');
+      if(ai===selected[qi] && ai===item.correct) b.classList.add('correct');
+      if(ai===selected[qi] && ai!==item.correct) b.classList.add('wrong');
+    });
+    if(selected[qi]===item.correct){
+      score++;
+      fb.className='feedback show good';
+      fb.textContent='Верно.';
+    }else{
+      fb.className='feedback show bad';
+      fb.textContent=`Правильный ответ: ${String.fromCharCode(97+item.correct)}).`;
+    }
+  });
+  const wrong=questions.length-score;
+  const rate=Math.round(score/questions.length*100);
+  document.getElementById('score').textContent=`${score} / ${questions.length}`;
+  document.getElementById('correctStat').textContent=score;
+  document.getElementById('wrongStat').textContent=wrong;
+  document.getElementById('rateStat').textContent=rate+'%';
+  let title='Есть что повторить';
+  let text='Посмотри вопросы с ошибками и ещё раз пройди по ключевым понятиям.';
+  if(score===questions.length){title='Отличный результат';text='Все ответы верные. Базовые понятия по стилям и прототипированию усвоены.'}
+  else if(score>=5){title='Хороший результат';text='Основные идеи понятны. Осталось закрепить несколько деталей.'}
+  document.getElementById('resultTitle').textContent=title;
+  document.getElementById('resultText').textContent=text;
+  result.classList.add('show');
+  finish.disabled=true;
+  result.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function resetQuiz(){
+  selected=Array(questions.length).fill(null);
+  checked=false;
+  result.classList.remove('show');
+  render();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function copyResult(){
+  const score=questions.reduce((s,q,i)=>s+(selected[i]===q.correct?1:0),0);
+  const text=`Промежуточная рефлексия по Figma: ${score} из ${questions.length} (${Math.round(score/questions.length*100)}%).`;
+  navigator.clipboard.writeText(text).then(()=>showToast('Результат скопирован')).catch(()=>showToast('Не удалось скопировать'));
+}
+
+function showToast(text){
+  toast.textContent=text;
+  toast.classList.add('show');
+  setTimeout(()=>toast.classList.remove('show'),1800);
+}
+
+document.getElementById('finish').addEventListener('click',finishQuiz);
+document.getElementById('reset').addEventListener('click',resetQuiz);
+document.getElementById('again').addEventListener('click',resetQuiz);
+document.getElementById('copyResult').addEventListener('click',copyResult);
+render();
+</script>
+</body>
+</html>
