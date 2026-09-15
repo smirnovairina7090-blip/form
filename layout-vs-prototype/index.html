@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Макет или прототип?</title>
+<style>
+:root{
+  --bg:#f5f3ff; --paper:#ffffff; --ink:#201c33; --muted:#716b86; --line:#e7e2f2;
+  --violet:#7257f5; --violet-dark:#5b3ee5; --cyan:#1fc8bd; --green:#1c9b69; --red:#d95768;
+  --shadow:0 18px 50px rgba(67,48,122,.12);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;background:
+radial-gradient(circle at 8% 4%,rgba(114,87,245,.14),transparent 29%),
+radial-gradient(circle at 92% 14%,rgba(31,200,189,.11),transparent 24%),var(--bg);color:var(--ink)}
+button{font:inherit}
+.shell{max-width:1180px;margin:0 auto;padding:36px 18px 56px}
+.hero{display:grid;grid-template-columns:1.3fr .7fr;gap:18px;align-items:stretch;margin-bottom:20px}
+.hero-main,.score-card{background:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.85);box-shadow:var(--shadow);border-radius:28px}
+.hero-main{padding:30px 32px}.eyebrow{font-size:12px;font-weight:850;letter-spacing:.12em;text-transform:uppercase;color:var(--violet)}
+h1{font-size:clamp(34px,5vw,62px);line-height:.98;letter-spacing:-.045em;margin:9px 0 14px;max-width:760px}
+.lead{font-size:17px;line-height:1.6;color:var(--muted);max-width:760px;margin:0}.rule{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.pill{padding:9px 12px;border-radius:999px;background:#f0edff;color:#4f3ac9;font-size:13px;font-weight:750}
+.score-card{padding:24px;display:flex;flex-direction:column;justify-content:space-between;min-height:210px;background:linear-gradient(145deg,#201b35,#3e326f);color:#fff}.score-label{font-size:13px;opacity:.72}.score-big{font-size:58px;font-weight:900;letter-spacing:-.05em;line-height:1}.score-sub{font-size:14px;opacity:.72}.progress{height:8px;background:rgba(255,255,255,.13);border-radius:99px;overflow:hidden;margin-top:14px}.progress>span{display:block;height:100%;width:0;background:linear-gradient(90deg,#9a86ff,#54e8d8);border-radius:99px;transition:width .35s ease}
+.board{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px}.zone{position:relative;background:rgba(255,255,255,.82);border:2px dashed #dcd5f0;border-radius:24px;padding:20px;min-height:220px;transition:.2s ease}.zone.over{transform:translateY(-2px);border-color:var(--violet);background:#fbfaff}.zone.layout{border-color:#bcb0ff}.zone.prototype{border-color:#9ddfd8}.zone-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:15px}.zone-title{display:flex;align-items:center;gap:11px}.zone-icon{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;font-size:22px}.layout .zone-icon{background:#eeeaff}.prototype .zone-icon{background:#e7fbf8}.zone h2{margin:0;font-size:22px}.zone small{color:var(--muted);line-height:1.4}.count{font-weight:850;font-size:13px;color:var(--muted);background:#f5f3f9;padding:7px 10px;border-radius:999px}.drop-list{display:flex;flex-direction:column;gap:9px;min-height:112px}.drop-empty{color:#a49db5;text-align:center;margin:auto;padding:30px 8px;font-size:14px}.placed{background:#fff;border:1px solid var(--line);border-radius:15px;padding:12px 13px;display:flex;gap:10px;align-items:flex-start}.placed .ok{color:var(--green);font-weight:900}.placed b{font-size:14px}.placed p{margin:3px 0 0;color:var(--muted);font-size:12px;line-height:1.4}
+.workspace{background:rgba(255,255,255,.88);border:1px solid rgba(255,255,255,.9);box-shadow:var(--shadow);border-radius:28px;padding:24px}.work-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:16px}.work-top h3{font-size:22px;margin:0 0 5px}.work-top p{margin:0;color:var(--muted);font-size:14px}.reset{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:13px;padding:10px 14px;font-weight:800;cursor:pointer}.reset:hover{border-color:#cfc5e9}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.card{position:relative;text-align:left;border:1px solid var(--line);background:#fff;border-radius:18px;padding:16px;min-height:142px;cursor:grab;transition:.18s ease;box-shadow:0 3px 12px rgba(54,42,89,.05)}.card:hover{transform:translateY(-3px);box-shadow:0 12px 24px rgba(54,42,89,.1);border-color:#cfc5ed}.card.selected{outline:3px solid rgba(114,87,245,.25);border-color:var(--violet)}.card.bad{animation:shake .35s ease;border-color:#ef9aa5;background:#fff9fa}.card-num{font-size:11px;font-weight:850;color:var(--violet);letter-spacing:.08em}.card-title{font-weight:850;font-size:15px;line-height:1.25;margin-top:10px}.card-hint{position:absolute;left:16px;bottom:14px;color:#aaa3ba;font-size:11px}.feedback{min-height:60px;margin-top:16px;border-radius:16px;padding:13px 15px;background:#f7f5fb;color:var(--muted);display:flex;align-items:center;line-height:1.45}.feedback.good{background:#edfbf5;color:#167a54}.feedback.bad{background:#fff1f3;color:#a9394a}.feedback strong{color:inherit}.finish{display:none;margin-top:18px;padding:24px;border-radius:22px;background:linear-gradient(135deg,#ece8ff,#e8fbf7)}.finish.show{display:block}.finish h3{margin:0 0 7px;font-size:25px}.finish p{margin:0;color:#5e5870;line-height:1.5}.again{margin-top:14px;border:0;background:var(--violet);color:#fff;padding:11px 16px;border-radius:13px;font-weight:850;cursor:pointer}
+@keyframes shake{25%{transform:translateX(-5px)}50%{transform:translateX(5px)}75%{transform:translateX(-3px)}}
+@media(max-width:900px){.hero{grid-template-columns:1fr}.score-card{min-height:160px}.cards{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:660px){.shell{padding:18px 12px 36px}.hero-main{padding:22px}.board{grid-template-columns:1fr}.cards{grid-template-columns:1fr}.card{min-height:112px}.work-top{flex-direction:column}.reset{width:100%}.hero-main,.score-card,.workspace{border-radius:22px}}
+</style>
+</head>
+<body>
+<main class="shell">
+  <section class="hero">
+    <div class="hero-main">
+      <div class="eyebrow">Интерактивная практика</div>
+      <h1>Макет или прототип?</h1>
+      <p class="lead">Определи, что лучше подходит для каждой задачи. Перетащи карточку в нужную область или нажми на карточку, а затем на «Макет» или «Прототип».</p>
+      <div class="rule"><span class="pill">Макет = внешний вид</span><span class="pill">Прототип = сценарий взаимодействия</span></div>
+    </div>
+    <aside class="score-card">
+      <div><div class="score-label">РАЗОБРАНО СИТУАЦИЙ</div><div class="score-big"><span id="doneCount">0</span>/8</div></div>
+      <div><div class="score-sub" id="mistakesLabel">Ошибок пока нет</div><div class="progress"><span id="progress"></span></div></div>
+    </aside>
+  </section>
+
+  <section class="board">
+    <article class="zone layout" data-zone="layout">
+      <div class="zone-head"><div class="zone-title"><div class="zone-icon">▣</div><div><h2>Макет</h2><small>Статичный результат, где важен внешний вид</small></div></div><div class="count"><span id="layoutCount">0</span>/4</div></div>
+      <div class="drop-list" id="layoutList"><div class="drop-empty">Перетащи сюда подходящие карточки</div></div>
+    </article>
+    <article class="zone prototype" data-zone="prototype">
+      <div class="zone-head"><div class="zone-title"><div class="zone-icon">↗</div><div><h2>Прототип</h2><small>Нужно показать переходы, действия и сценарий</small></div></div><div class="count"><span id="prototypeCount">0</span>/4</div></div>
+      <div class="drop-list" id="prototypeList"><div class="drop-empty">Перетащи сюда подходящие карточки</div></div>
+    </article>
+  </section>
+
+  <section class="workspace">
+    <div class="work-top"><div><h3>Ситуации</h3><p>Можно ошибаться. После неверного выбора карточка останется в поле, а игра подскажет, на что обратить внимание.</p></div><button class="reset" id="reset">Начать заново</button></div>
+    <div class="cards" id="cards"></div>
+    <div class="feedback" id="feedback">Выбери первую ситуацию и реши, нужен ли здесь интерактивный сценарий.</div>
+    <div class="finish" id="finish"><h3 id="finishTitle">Готово!</h3><p id="finishText"></p><button class="again" id="again">Пройти ещё раз</button></div>
+  </section>
+</main>
+<script>
+const items=[
+ {id:1,title:'Рекламный баннер для центра города',answer:'layout',why:'Для баннера достаточно статичного изображения: взаимодействие с интерфейсом показывать не нужно.'},
+ {id:2,title:'Главная страница веб-сайта',answer:'prototype',why:'Важно показать переходы по ссылкам, работу меню и поведение пользователя на странице.'},
+ {id:3,title:'Визитная карточка',answer:'layout',why:'Визитка является статичным объектом, поэтому достаточно показать её внешний вид.'},
+ {id:4,title:'Мобильное приложение для тренировок',answer:'prototype',why:'Нужно показать, как пользователь выбирает упражнения, переходит между экранами и отслеживает прогресс.'},
+ {id:5,title:'Плакат для школьного мероприятия',answer:'layout',why:'Плакат не требует интерактивности, поэтому главное здесь - композиция и визуальное оформление.'},
+ {id:6,title:'Онлайн-игра для детей',answer:'prototype',why:'Нужно продемонстрировать игровой сценарий и взаимодействие пользователя с интерфейсом.'},
+ {id:7,title:'Меню для ресторана',answer:'layout',why:'Если речь идёт о печатном или статичном меню, достаточно макета без интерактивных переходов.'},
+ {id:8,title:'Приложение для бронирования билетов',answer:'prototype',why:'Важно показать последовательность выбора билета, места и оформления заказа.'}
+];
+let selected=null,done=new Set(),mistakes=0,dragging=null;
+const cards=document.getElementById('cards'),feedback=document.getElementById('feedback');
+function renderCards(){cards.innerHTML='';items.forEach(item=>{if(done.has(item.id))return;const b=document.createElement('button');b.type='button';b.className='card';b.draggable=true;b.dataset.id=item.id;b.innerHTML=`<span class="card-num">СИТУАЦИЯ ${item.id}</span><div class="card-title">${item.title}</div><div class="card-hint">перетащи или выбери</div>`;b.addEventListener('click',()=>selectCard(b,item.id));b.addEventListener('dragstart',e=>{dragging=item.id;e.dataTransfer.setData('text/plain',String(item.id));setTimeout(()=>b.style.opacity='.45',0)});b.addEventListener('dragend',()=>{dragging=null;b.style.opacity='';document.querySelectorAll('.zone').forEach(z=>z.classList.remove('over'))});cards.appendChild(b)});update();}
+function selectCard(el,id){document.querySelectorAll('.card').forEach(c=>c.classList.remove('selected'));if(selected===id){selected=null;return}selected=id;el.classList.add('selected');feedback.className='feedback';feedback.innerHTML='Карточка выбрана. Теперь нажми на область <strong>«Макет»</strong> или <strong>«Прототип»</strong>.'}
+function attempt(id,zone){if(!id||done.has(id))return;const item=items.find(x=>x.id===Number(id));if(item.answer!==zone){mistakes++;const card=document.querySelector(`.card[data-id="${id}"]`);if(card){card.classList.remove('bad');void card.offsetWidth;card.classList.add('bad')}feedback.className='feedback bad';feedback.innerHTML=`Пока не подходит. Подумай: <strong>нужно ли здесь показывать действия пользователя и переходы?</strong>`;selected=null;document.querySelectorAll('.card').forEach(c=>c.classList.remove('selected'));update();return}done.add(item.id);selected=null;place(item);renderCards();feedback.className='feedback good';feedback.innerHTML=`<strong>Верно.</strong>&nbsp; ${item.why}`;if(done.size===items.length)finish();}
+function place(item){const list=document.getElementById(item.answer+'List');list.querySelector('.drop-empty')?.remove();const el=document.createElement('div');el.className='placed';el.innerHTML=`<span class="ok">✓</span><div><b>${item.title}</b><p>${item.why}</p></div>`;list.appendChild(el)}
+document.querySelectorAll('.zone').forEach(zone=>{zone.addEventListener('click',e=>{if(e.target.closest('.placed'))return;if(selected)attempt(selected,zone.dataset.zone)});zone.addEventListener('dragover',e=>{e.preventDefault();zone.classList.add('over')});zone.addEventListener('dragleave',()=>zone.classList.remove('over'));zone.addEventListener('drop',e=>{e.preventDefault();zone.classList.remove('over');const id=dragging||Number(e.dataTransfer.getData('text/plain'));attempt(id,zone.dataset.zone)})});
+function update(){document.getElementById('doneCount').textContent=done.size;document.getElementById('progress').style.width=(done.size/items.length*100)+'%';document.getElementById('layoutCount').textContent=[...done].filter(id=>items.find(x=>x.id===id).answer==='layout').length;document.getElementById('prototypeCount').textContent=[...done].filter(id=>items.find(x=>x.id===id).answer==='prototype').length;document.getElementById('mistakesLabel').textContent=mistakes?`Ошибок: ${mistakes}`:'Ошибок пока нет'}
+function finish(){const box=document.getElementById('finish');box.classList.add('show');const text=mistakes===0?'Все 8 ситуаций определены без ошибок. Отлично различаешь статичный дизайн и интерактивный сценарий.':mistakes<=2?`Все 8 ситуаций разобраны. Ошибок: ${mistakes}. Разница между макетом и прототипом уже понятна.`:`Все 8 ситуаций разобраны. Ошибок: ${mistakes}. Перед следующей задачей проверяй главный вопрос: нужно ли демонстрировать действия пользователя?`;document.getElementById('finishText').textContent=text;box.scrollIntoView({behavior:'smooth',block:'nearest'})}
+function reset(){done=new Set();mistakes=0;selected=null;dragging=null;['layoutList','prototypeList'].forEach(id=>document.getElementById(id).innerHTML='<div class="drop-empty">Перетащи сюда подходящие карточки</div>');document.getElementById('finish').classList.remove('show');feedback.className='feedback';feedback.textContent='Выбери первую ситуацию и реши, нужен ли здесь интерактивный сценарий.';renderCards()}
+document.getElementById('reset').addEventListener('click',reset);document.getElementById('again').addEventListener('click',reset);renderCards();
+</script>
+</body>
+</html>
