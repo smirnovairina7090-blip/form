@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f1ff">
+  <meta name="description" content="Интерактивное домашнее задание по обыкновенным и десятичным дробям, процентам и текстовым задачам.">
+  <title>Домашнее задание - дроби и проценты</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page-glow glow-one"></div>
+  <div class="page-glow glow-two"></div>
+
+  <header class="hero shell" id="top">
+    <div class="hero-copy">
+      <div class="eyebrow"><span class="eyebrow-dot"></span> МАТЕМАТИКА · ДОМАШНЕЕ ЗАДАНИЕ</div>
+      <h1>Дроби, проценты<br><span>и задачи с сюжетом</span></h1>
+      <p class="hero-lead">Коротко вспомни правила, реши задания разных типов и отправь преподавателю ссылку на готовую работу.</p>
+      <div class="hero-meta">
+        <div class="meta-pill"><b>≈ 25 мин</b><span>на работу</span></div>
+        <div class="meta-pill"><b>16 баллов</b><span>за задания</span></div>
+        <div class="meta-pill"><b>1 ссылка</b><span>с итогом</span></div>
+      </div>
+    </div>
+
+    <aside class="student-card" aria-label="Данные ученика">
+      <div class="student-card-top">
+        <span class="student-number">01</span>
+        <span class="student-label">СТАРТ</span>
+      </div>
+      <label for="studentName">Имя и фамилия</label>
+      <input id="studentName" type="text" autocomplete="name" placeholder="Например, Лев Смирнов">
+      <p>Прогресс сохраняется на этом устройстве автоматически.</p>
+      <a class="start-button" href="#theory">Начать работу <span>↓</span></a>
+    </aside>
+  </header>
+
+  <main id="worksheet">
+    <section class="section shell" id="theory">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow muted">01 · БЫСТРОЕ ПОВТОРЕНИЕ</div>
+          <h2>Шесть правил, которые пригодятся</h2>
+        </div>
+        <p>Нажимай на карточки, если нужно освежить правило и посмотреть пример.</p>
+      </div>
+
+      <div class="theory-grid">
+        <details class="theory-card" open>
+          <summary><span class="theory-icon">0,7</span><span>Десятичная дробь</span><b>+</b></summary>
+          <div class="theory-body">Дробь, записанная с помощью запятой. Цифры справа от запятой показывают десятые, сотые, тысячные и дальше.<div class="example">0,37 = 37/100</div></div>
+        </details>
+        <details class="theory-card">
+          <summary><span class="theory-icon frac-icon"><i>3</i><em>8</em></span><span>Обыкновенная дробь</span><b>+</b></summary>
+          <div class="theory-body">Числитель показывает, сколько частей взяли, знаменатель - на сколько равных частей разделили целое.<div class="example">3/8 - три части из восьми</div></div>
+        </details>
+        <details class="theory-card">
+          <summary><span class="theory-icon">÷</span><span>Дробь → десятичная</span><b>+</b></summary>
+          <div class="theory-body">Раздели числитель на знаменатель. Иногда удобно сначала привести знаменатель к 10, 100 или 1000.<div class="example">7/20 = 7 · 5 / 100 = 0,35</div></div>
+        </details>
+        <details class="theory-card">
+          <summary><span class="theory-icon">%</span><span>Проценты</span><b>+</b></summary>
+          <div class="theory-body">1% - это одна сотая часть целого. Чтобы превратить процент в десятичную дробь, раздели на 100.<div class="example">35% = 0,35</div></div>
+        </details>
+        <details class="theory-card">
+          <summary><span class="theory-icon">×</span><span>Найти часть от целого</span><b>+</b></summary>
+          <div class="theory-body">Умножь целое на дробь, которая описывает нужную часть. Для процентов сначала переведи процент в десятичную дробь.<div class="example">35% от 160: 160 · 0,35 = 56</div></div>
+        </details>
+        <details class="theory-card">
+          <summary><span class="theory-icon">?</span><span>Найти целое по части</span><b>+</b></summary>
+          <div class="theory-body">Раздели известную часть на дробь, которая показывает, какую долю целого она составляет.<div class="example">24 - это 30%: 24 ÷ 0,3 = 80</div></div>
+        </details>
+      </div>
+    </section>
+
+    <section class="section shell" id="tasks">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow muted">02 · РАЗМИНКА</div>
+          <h2>Узнай эквивалентные записи</h2>
+        </div>
+        <p>Первое задание - с несколькими правильными ответами. Во втором нужно соединить пары.</p>
+      </div>
+
+      <article class="task-card accent-violet" data-task="equivalent">
+        <div class="task-index">01</div>
+        <div class="task-content">
+          <div class="task-title-row">
+            <div><span class="task-kicker">ОТМЕТЬ ВСЕ ПОДХОДЯЩИЕ</span><h3>Какие записи равны 0,25?</h3></div>
+            <span class="points">1 балл</span>
+          </div>
+          <div class="choice-grid" id="equivalentChoices">
+            <label class="choice-card"><input type="checkbox" value="quarter"><span>1/4</span></label>
+            <label class="choice-card"><input type="checkbox" value="percent25"><span>25%</span></label>
+            <label class="choice-card"><input type="checkbox" value="decimal025"><span>0,25</span></label>
+            <label class="choice-card"><input type="checkbox" value="decimal0025"><span>0,025</span></label>
+            <label class="choice-card"><input type="checkbox" value="percent2_5"><span>2,5%</span></label>
+          </div>
+        </div>
+      </article>
+
+      <article class="task-card accent-lime" data-task="matching">
+        <div class="task-index">02</div>
+        <div class="task-content">
+          <div class="task-title-row">
+            <div><span class="task-kicker">СОЕДИНИ ПАРЫ</span><h3>Обыкновенная дробь ↔ процент</h3></div>
+            <span class="points">4 балла</span>
+          </div>
+          <p class="task-help">Сначала нажми дробь слева, затем подходящий процент справа. Повторное соединение заменит старую пару.</p>
+          <div class="match-board" id="matchBoard">
+            <div class="match-column" id="matchLeft">
+              <button type="button" class="match-item" data-side="left" data-key="half"><span class="match-order"></span>1/2</button>
+              <button type="button" class="match-item" data-side="left" data-key="threequarters"><span class="match-order"></span>3/4</button>
+              <button type="button" class="match-item" data-side="left" data-key="fifth"><span class="match-order"></span>1/5</button>
+              <button type="button" class="match-item" data-side="left" data-key="seven20"><span class="match-order"></span>7/20</button>
+            </div>
+            <div class="match-arrow">↔</div>
+            <div class="match-column" id="matchRight">
+              <button type="button" class="match-item" data-side="right" data-key="35"><span class="match-order"></span>35%</button>
+              <button type="button" class="match-item" data-side="right" data-key="20"><span class="match-order"></span>20%</button>
+              <button type="button" class="match-item" data-side="right" data-key="75"><span class="match-order"></span>75%</button>
+              <button type="button" class="match-item" data-side="right" data-key="50"><span class="match-order"></span>50%</button>
+            </div>
+          </div>
+          <button class="small-button ghost" type="button" id="clearMatches">Сбросить пары</button>
+        </div>
+      </article>
+    </section>
+
+    <section class="section shell compact-top" id="conversions">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow muted">03 · ПЕРЕВОДЫ</div>
+          <h2>Меняем форму записи</h2>
+        </div>
+        <p>Вписывай только число. Запятую или точку можно использовать одинаково.</p>
+      </div>
+
+      <div class="task-grid two-columns">
+        <article class="mini-task">
+          <div class="mini-num">03</div><span class="points">1 балл</span>
+          <h3>7/20 = ?</h3><p>Запиши десятичной дробью.</p>
+          <div class="answer-line"><input id="conv1" inputmode="decimal" placeholder="0,00"><span></span></div>
+        </article>
+        <article class="mini-task">
+          <div class="mini-num">04</div><span class="points">1 балл</span>
+          <h3>0,48 = ?%</h3><p>Переведи в проценты.</p>
+          <div class="answer-line"><input id="conv2" inputmode="decimal" placeholder="0"><span>%</span></div>
+        </article>
+        <article class="mini-task">
+          <div class="mini-num">05</div><span class="points">1 балл</span>
+          <h3>35% = ?</h3><p>Запиши десятичной дробью.</p>
+          <div class="answer-line"><input id="conv3" inputmode="decimal" placeholder="0,00"><span></span></div>
+        </article>
+        <article class="mini-task">
+          <div class="mini-num">06</div><span class="points">1 балл</span>
+          <h3>1,25 = ?%</h3><p>Будь внимателен: ответ больше 100%.</p>
+          <div class="answer-line"><input id="conv4" inputmode="decimal" placeholder="0"><span>%</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section shell" id="percent">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow muted">04 · ЧАСТЬ И ЦЕЛОЕ</div>
+          <h2>Выбери правильное действие сам</h2>
+        </div>
+        <p>Здесь формула уже не подсказана. Сначала реши, что именно нужно найти.</p>
+      </div>
+
+      <div class="task-grid three-columns">
+        <article class="mini-task story-mini">
+          <div class="mini-num">07</div><span class="points">1 балл</span>
+          <h3>18 из 72</h3><p>Какой процент от 72 составляет число 18?</p>
+          <div class="answer-line"><input id="part1" inputmode="decimal" placeholder="0"><span>%</span></div>
+        </article>
+        <article class="mini-task story-mini">
+          <div class="mini-num">08</div><span class="points">1 балл</span>
+          <h3>Известна часть</h3><p>24 - это 30% некоторого числа. Найди это число.</p>
+          <div class="answer-line"><input id="part2" inputmode="decimal" placeholder="0"><span></span></div>
+        </article>
+        <article class="mini-task story-mini">
+          <div class="mini-num">09</div><span class="points">1 балл</span>
+          <h3>35% от числа</h3><p>Найди 35% от 160.</p>
+          <div class="answer-line"><input id="part3" inputmode="decimal" placeholder="0"><span></span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section shell" id="calculations">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow muted">05 · ПО ДЕЙСТВИЯМ</div>
+          <h2>Не считай слева направо</h2>
+        </div>
+        <p>Вспомни порядок действий: сначала скобки, затем умножение и деление, после - сложение и вычитание.</p>
+      </div>
+
+      <div class="task-grid two-columns">
+        <article class="calc-card">
+          <div class="calc-head"><span>10</span><span class="points">1 балл</span></div>
+          <div class="expression">3,6 + 1,25 · (4,8 − 2,4)</div>
+          <label>Ответ <input id="calc1" inputmode="decimal" placeholder="0,0"></label>
+        </article>
+        <article class="calc-card">
+          <div class="calc-head"><span>11</span><span class="points">1 балл</span></div>
+          <div class="expression">(7,2 − 1,8) : 0,6 + 2,5</div>
+          <label>Ответ <input id="calc2" inputmode="decimal" placeholder="0,0"></label>
+        </article>
+      </div>
+    </section>
+
+    <section class="section shell" id="stories">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow muted">06 · ЗАДАЧИ ПОСЛОЖНЕЕ</div>
+          <h2>Теперь проценты спрятаны в сюжете</h2>
+        </div>
+        <p>Можно считать на черновике. В поле записывай итоговый числовой ответ.</p>
+      </div>
+
+      <article class="story-card">
+        <div class="story-number">12</div>
+        <div class="story-main">
+          <div class="story-top"><span class="task-kicker">ДВА ПОСЛЕДОВАТЕЛЬНЫХ СНИЖЕНИЯ</span><span class="points">1 балл</span></div>
+          <h3>Рюкзак и промокод</h3>
+          <p>Рюкзак стоил <b>4800 ₽</b>. Сначала магазин снизил цену на <b>15%</b>, а затем к уже сниженной цене применили промокод ещё на <b>10%</b>. Сколько рублей заплатит покупатель?</p>
+          <div class="story-answer"><label for="problem1">Ответ</label><input id="problem1" inputmode="decimal" placeholder="Например, 3200"><span>₽</span></div>
+        </div>
+      </article>
+
+      <article class="story-card dark-story">
+        <div class="story-number">13</div>
+        <div class="story-main">
+          <div class="story-top"><span class="task-kicker">ДРОБЬ + ПРОЦЕНТ</span><span class="points">1 балл</span></div>
+          <h3>Запас воды в походе</h3>
+          <p>В канистре было <b>48 л</b> воды. В первый день израсходовали <b>3/8</b> всего запаса. Во второй день израсходовали <b>25%</b> от того количества воды, которое осталось после первого дня. Сколько литров воды осталось после двух дней?</p>
+          <div class="story-answer"><label for="problem2">Ответ</label><input id="problem2" inputmode="decimal" placeholder="Например, 18,5"><span>л</span></div>
+        </div>
+      </article>
+
+      <article class="reflection-card">
+        <div>
+          <span class="task-kicker">ПОКАЖИ ХОД МЫСЛЕЙ</span>
+          <h3>Объясни решение задачи 13</h3>
+          <p>Коротко опиши действия: что ты находил первым, что вторым и почему.</p>
+        </div>
+        <textarea id="explanation" rows="5" placeholder="Сначала я нашёл(ла)..."></textarea>
+      </article>
+    </section>
+
+    <section class="finish-section shell" id="finish">
+      <div class="finish-card">
+        <div class="finish-copy">
+          <div class="eyebrow">07 · ФИНИШ</div>
+          <h2>Проверь, всё ли заполнено</h2>
+          <p>После завершения появится балл и персональная ссылка. По ней преподаватель увидит ответы именно в том виде, в котором ты их отправил.</p>
+          <div class="progress-wrap" aria-label="Прогресс заполнения">
+            <div class="progress-label"><span>Заполнено</span><b id="progressText">0%</b></div>
+            <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+          </div>
+        </div>
+        <button class="finish-button" id="finishButton" type="button">Завершить и получить результат <span>→</span></button>
+      </div>
+    </section>
+  </main>
+
+  <section class="result-view shell" id="resultView" hidden>
+    <div class="result-hero">
+      <div>
+        <div class="eyebrow">ГОТОВО · РЕЗУЛЬТАТ РАБОТЫ</div>
+        <h2 id="resultName">Работа ученика</h2>
+        <p id="resultDate"></p>
+      </div>
+      <div class="score-ring"><b id="scoreValue">0</b><span>/ 16</span></div>
+    </div>
+
+    <div class="result-actions" id="studentResultActions">
+      <button type="button" class="primary-action" id="shareResult">Отправить преподавателю</button>
+      <button type="button" class="secondary-action" id="copyResult">Скопировать ссылку</button>
+      <span class="copy-status" id="copyStatus"></span>
+    </div>
+
+    <div class="result-summary" id="resultSummary"></div>
+
+    <div class="result-footer-actions">
+      <button class="secondary-action" type="button" id="backToWork">Вернуться к работе</button>
+      <button class="secondary-action" type="button" id="startFresh">Начать заново</button>
+    </div>
+  </section>
+
+  <footer class="footer shell">
+    <span>Домашнее задание · дроби и проценты</span>
+    <a href="#top">Наверх ↑</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
