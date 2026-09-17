@@ -3,177 +3,314 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#17122f" />
-  <title>ByteBank - диагностика Python</title>
+  <meta name="theme-color" content="#11101d" />
+  <title>ByteBank - Python: первый рабочий день</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="bg-grid" aria-hidden="true"></div>
   <header class="topbar">
-    <div class="brand"><span class="brand-mark">B</span><div><strong>ByteBank</strong><small>Python Skills Check</small></div></div>
+    <div class="brand"><span class="brand-mark">B</span><div><strong>ByteBank</strong><small>Automation Department</small></div></div>
     <div class="top-progress"><span id="progressLabel">0%</span><div class="progress-track"><div id="progressFill"></div></div></div>
   </header>
 
   <main class="shell">
     <section class="hero card">
       <div class="hero-copy">
-        <span class="eyebrow">Первый рабочий день</span>
-        <h1>Стажёр отдела автоматизации банка</h1>
-        <p>В ByteBank случился сбой: часть внутренних скриптов перестала работать. Пройди рабочий день, восстанови программы и покажи, с какими конструкциями Python ты уже знаком.</p>
-        <div class="hero-meta"><span>≈ 25-35 минут</span><span>30 баллов</span><span>без длинных ответов</span></div>
+        <span class="eyebrow">07:58 • главный офис ByteBank</span>
+        <h1>Сегодня ты дежуришь в отделе автоматизации</h1>
+        <p>Ночью банк обновил внутреннюю систему. Утром сотрудники обнаружили странные сбои: один банкомат блокирует нормальные операции, антифрод пропускает подозрительные платежи, а отчёт по транзакциям считает суммы неправильно. Тебе дали временный доступ к Python-скриптам и попросили помочь команде разобраться.</p>
+        <div class="hero-meta"><span>≈ 40 минут</span><span>сюжетная диагностика</span><span>короткие ответы и код</span></div>
+        <button type="button" class="primary story-open" data-window="briefingWindow">Открыть первое сообщение</button>
       </div>
-      <div class="hero-terminal" aria-label="Декоративный терминал">
-        <div class="terminal-head"><i></i><i></i><i></i></div>
-        <code>&gt; employee = "intern"<br>&gt; access = "python"<br>&gt; mission.start()<br><span class="blink">_</span></code>
+      <div class="hero-terminal" aria-label="Терминал ByteBank">
+        <div class="terminal-head"><i></i><i></i><i></i><span>bytebank-internal</span></div>
+        <code>07:58:12 system.check()<br>07:58:13 <b class="warn">3 incidents found</b><br>07:58:14 team.intern = <b>YOU</b><br>07:58:15 python_access = True<br><span class="blink">_</span></code>
       </div>
     </section>
 
     <form id="diagnosticForm" novalidate>
-      <section class="station card" id="profile">
-        <div class="station-head"><span class="station-no">00</span><div><span class="eyebrow">Пропуск сотрудника</span><h2>Кто сегодня выходит на смену?</h2></div></div>
-        <div class="grid two">
-          <label class="field"><span>Имя</span><input id="studentName" name="studentName" autocomplete="name" placeholder="Например, Саша" maxlength="40" /></label>
-          <label class="field"><span>Класс</span><select id="studentGrade"><option value="">Выбери</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>другое</option></select></label>
-          <label class="field"><span>Возраст</span><input id="studentAge" inputmode="numeric" maxlength="2" placeholder="13" /></label>
-          <label class="field"><span>Как сам оцениваешь Python?</span><select id="selfLevel"><option value="">Выбери</option><option>1 - почти не знаю</option><option>2 - кое-что помню</option><option>3 - могу решать обычные задачи</option><option>4 - пишу программы сам</option><option>5 - уверенно программирую</option></select></label>
+      <section class="station card" id="start-profile">
+        <div class="station-head"><span class="station-no">00</span><div><span class="eyebrow">08:00 • утренний брифинг</span><h2>Перед сменой Мира хочет понять, как тебе удобнее работать</h2></div></div>
+        <div class="employee-dialog">
+          <div class="avatar mira">М</div>
+          <div><strong>Мира, тимлид автоматизации</strong><p>Здесь нет задачи получить идеальный балл. Мне важно понять, что ты уже умеешь делать сам, где ориентируешься по смыслу, а где пока нужен пример. Если не знаешь ответ - выбирай тот, который кажется логичным.</p></div>
         </div>
 
         <div class="question-block">
-          <h3>Где ты уже встречался с Python?</h3>
+          <h3>Когда ты открываешь незнакомый код, что чувствуешь чаще всего?</h3>
+          <div class="emotion-grid" data-group="startMood">
+            <label><input type="radio" name="startMood" value="Любопытно"><span><b>😎</b> Любопытно. Хочу понять, что здесь происходит</span></label>
+            <label><input type="radio" name="startMood" value="Нормально"><span><b>🙂</b> Нормально. Обычно постепенно разбираюсь</span></label>
+            <label><input type="radio" name="startMood" value="Нервничаю"><span><b>😬</b> Немного нервничаю, если кода много</span></label>
+            <label><input type="radio" name="startMood" value="Теряюсь"><span><b>🫣</b> Часто теряюсь и не понимаю, с чего начать</span></label>
+          </div>
+        </div>
+
+        <div class="question-block">
+          <h3>А если программа выдаёт ошибку?</h3>
+          <div class="chips" data-group="debugReaction">
+            <label><input type="radio" name="debugReaction" value="Ищу строку ошибки"><span>Сначала ищу строку ошибки</span></label>
+            <label><input type="radio" name="debugReaction" value="Проверяю код по шагам"><span>Проверяю код по шагам</span></label>
+            <label><input type="radio" name="debugReaction" value="Пробую менять код"><span>Пробую менять код и смотреть, что будет</span></label>
+            <label><input type="radio" name="debugReaction" value="Зову на помощь"><span>Скорее зову на помощь</span></label>
+          </div>
+        </div>
+
+        <div class="question-block">
+          <h3>Где Python уже встречался?</h3>
           <div class="chips" data-group="experience">
-            <label><input type="checkbox" value="Нигде"><span>Нигде</span></label>
+            <label><input type="checkbox" value="Почти нигде"><span>Почти нигде</span></label>
             <label><input type="checkbox" value="Школа"><span>Школа</span></label>
             <label><input type="checkbox" value="Курсы"><span>Курсы</span></label>
             <label><input type="checkbox" value="Самостоятельно"><span>Самостоятельно</span></label>
-            <label><input type="checkbox" value="Проекты"><span>Делал проекты</span></label>
+            <label><input type="checkbox" value="Свои проекты"><span>Свои проекты</span></label>
             <label><input type="checkbox" value="Олимпиады"><span>Олимпиады</span></label>
           </div>
         </div>
 
         <div class="question-block">
-          <h3>Что тебе интереснее всего делать?</h3>
+          <h3>Какие задачи звучат интереснее?</h3>
           <div class="chips" data-group="interests">
             <label><input type="checkbox" value="Игры"><span>Игры</span></label>
-            <label><input type="checkbox" value="Сайты"><span>Сайты</span></label>
             <label><input type="checkbox" value="Боты"><span>Боты</span></label>
+            <label><input type="checkbox" value="Сайты"><span>Сайты</span></label>
             <label><input type="checkbox" value="ИИ"><span>ИИ</span></label>
-            <label><input type="checkbox" value="Данные"><span>Анализ данных</span></label>
+            <label><input type="checkbox" value="Данные"><span>Данные и графики</span></label>
             <label><input type="checkbox" value="Кибербезопасность"><span>Кибербезопасность</span></label>
-            <label><input type="checkbox" value="Автоматизация"><span>Автоматизация</span></label>
-            <label><input type="checkbox" value="Алгоритмы"><span>Сложные задачи</span></label>
+            <label><input type="checkbox" value="Автоматизация"><span>Автоматизировать рутину</span></label>
+            <label><input type="checkbox" value="Олимпиадные задачи"><span>Сложные алгоритмы</span></label>
           </div>
         </div>
-        <label class="field"><span>Что хотелось бы научиться делать? Коротко</span><input id="goal" maxlength="100" placeholder="Например: бота, игру, сайт, разбираться в олимпиадах" /></label>
+        <label class="field"><span>Если бы сегодня можно было уйти домой с одним новым умением, что бы ты выбрал?</span><input id="goal" maxlength="120" placeholder="Например: научиться делать бота или лучше понимать сложный код" /></label>
       </section>
 
-      <section class="station card" id="tools">
-        <div class="station-head"><span class="station-no">01</span><div><span class="eyebrow">Пульт диспетчера</span><h2>Выбери инструмент для задачи</h2></div></div>
-        <p class="hint">Для каждой банковской задачи выбери конструкцию Python, которая подходит лучше всего.</p>
+      <section class="station card" id="atm-case">
+        <div class="station-head"><span class="station-no">01</span><div><span class="eyebrow">08:07 • банкомат №17</span><h2>Кирилл из поддержки прислал срочную заявку</h2></div></div>
+        <div class="employee-dialog">
+          <div class="avatar kirill">К</div>
+          <div><strong>Кирилл, инженер поддержки</strong><p>Банкомат у метро почему-то отклоняет часть нормальных операций. Я выгрузил логи. Посмотри, какие конструкции нам вообще понадобятся, прежде чем полезем в код.</p></div>
+        </div>
+        <button type="button" class="window-button story-open" data-window="atmLogWindow">Открыть журнал банкомата</button>
         <div class="tool-match">
-          <div class="match-row"><span>Проверить возраст клиента перед операцией</span><select data-match="age"><option value="">выбери</option><option value="if">if</option><option value="for">for</option><option value="while">while</option><option value="list">list</option><option value="dict">dict</option><option value="def">def</option></select></div>
-          <div class="match-row"><span>Проверить каждый платёж из списка</span><select data-match="payments"><option value="">выбери</option><option value="if">if</option><option value="for">for</option><option value="while">while</option><option value="list">list</option><option value="dict">dict</option><option value="def">def</option></select></div>
-          <div class="match-row"><span>Хранить имена клиентов по порядку</span><select data-match="clients"><option value="">выбери</option><option value="if">if</option><option value="for">for</option><option value="while">while</option><option value="list">list</option><option value="dict">dict</option><option value="def">def</option></select></div>
-          <div class="match-row"><span>Хранить баланс по номеру счёта</span><select data-match="balance"><option value="">выбери</option><option value="if">if</option><option value="for">for</option><option value="while">while</option><option value="list">list</option><option value="dict">dict</option><option value="def">def</option></select></div>
-          <div class="match-row"><span>Спрашивать PIN снова, пока он неверный</span><select data-match="pin"><option value="">выбери</option><option value="if">if</option><option value="for">for</option><option value="while">while</option><option value="list">list</option><option value="dict">dict</option><option value="def">def</option></select></div>
-          <div class="match-row"><span>Оформить повторяющуюся проверку отдельным блоком</span><select data-match="repeat"><option value="">выбери</option><option value="if">if</option><option value="for">for</option><option value="while">while</option><option value="list">list</option><option value="dict">dict</option><option value="def">def</option></select></div>
+          <div class="match-row"><span>Проверить, хватает ли денег на счёте для снятия</span><select data-match="balanceCheck"><option value="">выбери</option><option value="if">if</option><option value="for">for</option><option value="while">while</option><option value="list">list</option><option value="dict">dict</option><option value="def">def</option></select></div>
+          <div class="match-row"><span>Проверить каждую операцию из списка сегодняшних снятий</span><select data-match="eachOperation"><option value="">выбери</option><option value="if">if</option><option value="for">for</option><option value="while">while</option><option value="list">list</option><option value="dict">dict</option><option value="def">def</option></select></div>
+          <div class="match-row"><span>Хранить последние операции в том порядке, в котором они пришли</span><select data-match="orderedOperations"><option value="">выбери</option><option value="if">if</option><option value="for">for</option><option value="while">while</option><option value="list">list</option><option value="dict">dict</option><option value="def">def</option></select></div>
+          <div class="match-row"><span>Связать номер карты с текущим балансом</span><select data-match="cardBalance"><option value="">выбери</option><option value="if">if</option><option value="for">for</option><option value="while">while</option><option value="list">list</option><option value="dict">dict</option><option value="def">def</option></select></div>
+          <div class="match-row"><span>Снова спрашивать PIN, пока не введён правильный или не кончились попытки</span><select data-match="pinLoop"><option value="">выбери</option><option value="if">if</option><option value="for">for</option><option value="while">while</option><option value="list">list</option><option value="dict">dict</option><option value="def">def</option></select></div>
+          <div class="match-row"><span>Вынести проверку лимита в отдельный переиспользуемый блок</span><select data-match="limitFunction"><option value="">выбери</option><option value="if">if</option><option value="for">for</option><option value="while">while</option><option value="list">list</option><option value="dict">dict</option><option value="def">def</option></select></div>
         </div>
       </section>
 
-      <section class="station card" id="read-code">
-        <div class="station-head"><span class="station-no">02</span><div><span class="eyebrow">Операционный зал</span><h2>Что покажет терминал?</h2></div></div>
-        <div class="code-question" data-q="predict1">
-          <pre><code>balance = 1200
-purchase = 450
-if balance &gt;= purchase:
-    print("OK")
+      <section class="station card" id="antifraud">
+        <div class="station-head"><span class="station-no">02</span><div><span class="eyebrow">08:32 • антифрод</span><h2>Соня заметила подозрительный перевод</h2></div></div>
+        <div class="employee-dialog">
+          <div class="avatar sonya">С</div>
+          <div><strong>Соня, аналитик антифрода</strong><p>Клиент обычно переводит до 15 000 ₽, а сейчас отправляет 75 000 ₽ с нового устройства. Система должна сначала сравнить сумму с лимитом, затем проверить подтверждение. Кажется, один из условных блоков сломан.</p></div>
+        </div>
+        <button type="button" class="window-button story-open" data-window="clientCardWindow">Открыть карточку операции</button>
+
+        <div class="case-grid">
+          <div class="code-question">
+            <p class="case-title">1. Какое выражение проверяет, что сумма больше лимита?</p>
+            <div class="answers vertical"><label><input type="radio" name="cond1" value="amount > limit"><span><code>amount &gt; limit</code></span></label><label><input type="radio" name="cond1" value="amount = limit"><span><code>amount = limit</code></span></label><label><input type="radio" name="cond1" value="amount in limit"><span><code>amount in limit</code></span></label></div>
+          </div>
+          <div class="code-question">
+            <p class="case-title">2. Перевод можно пропустить, только если сумма не выше лимита и подтверждение получено. Что подходит?</p>
+            <div class="answers vertical"><label><input type="radio" name="cond2" value="and"><span><code>amount &lt;= limit and confirmed</code></span></label><label><input type="radio" name="cond2" value="or"><span><code>amount &lt;= limit or confirmed</code></span></label><label><input type="radio" name="cond2" value="not"><span><code>not amount &lt;= limit</code></span></label></div>
+          </div>
+          <div class="code-question wide">
+            <p class="case-title">3. Что напечатает система для операции из карточки?</p>
+            <pre><code>amount = 75000
+limit = 50000
+confirmed = True
+
+if amount &gt; limit:
+    print("REVIEW")
+elif not confirmed:
+    print("CONFIRM")
 else:
-    print("DENIED")</code></pre>
-          <div class="answers"><label><input type="radio" name="predict1" value="OK"><span>OK</span></label><label><input type="radio" name="predict1" value="DENIED"><span>DENIED</span></label><label><input type="radio" name="predict1" value="error"><span>Ошибка</span></label></div>
-        </div>
-        <div class="code-question" data-q="predict2">
-          <pre><code>attempts = 3
-while attempts &gt; 1:
-    attempts -= 1
-    print(attempts)</code></pre>
-          <div class="answers"><label><input type="radio" name="predict2" value="2 1"><span>2, затем 1</span></label><label><input type="radio" name="predict2" value="3 2 1"><span>3, 2, 1</span></label><label><input type="radio" name="predict2" value="2"><span>только 2</span></label></div>
-        </div>
-        <div class="code-question" data-q="predict3">
-          <pre><code>clients = ["Анна", "Олег", "Мия"]
-clients.append("Илья")
-print(len(clients), clients[-1])</code></pre>
-          <div class="answers"><label><input type="radio" name="predict3" value="4 Илья"><span>4 Илья</span></label><label><input type="radio" name="predict3" value="3 Илья"><span>3 Илья</span></label><label><input type="radio" name="predict3" value="4 Мия"><span>4 Мия</span></label></div>
-        </div>
-        <div class="code-question" data-q="predict4">
-          <pre><code>client = {"name": "Лев", "vip": True}
-print(client["name"] if client["vip"] else "обычный")</code></pre>
-          <div class="answers"><label><input type="radio" name="predict4" value="Лев"><span>Лев</span></label><label><input type="radio" name="predict4" value="обычный"><span>обычный</span></label><label><input type="radio" name="predict4" value="True"><span>True</span></label></div>
-        </div>
-        <div class="code-question" data-q="predict5">
-          <pre><code>code = "BANK-204"
-print(code.lower().split("-")[1])</code></pre>
-          <div class="answers"><label><input type="radio" name="predict5" value="204"><span>204</span></label><label><input type="radio" name="predict5" value="bank"><span>bank</span></label><label><input type="radio" name="predict5" value="BANK-204"><span>BANK-204</span></label></div>
+    print("APPROVE")</code></pre>
+            <div class="answers"><label><input type="radio" name="cond3" value="REVIEW"><span>REVIEW</span></label><label><input type="radio" name="cond3" value="CONFIRM"><span>CONFIRM</span></label><label><input type="radio" name="cond3" value="APPROVE"><span>APPROVE</span></label></div>
+          </div>
         </div>
       </section>
 
-      <section class="station card" id="repair">
-        <div class="station-head"><span class="station-no">03</span><div><span class="eyebrow">Сбой в скриптах</span><h2>Вставь пропущенное</h2></div></div>
-        <div class="inline-code-grid">
-          <label class="inline-code"><code>if amount <select id="blank1"><option value="">___</option><option>&gt;</option><option>&lt;</option><option>==</option><option>in</option></select> limit:</code><small>Нужно отправить крупную операцию на проверку</small></label>
-          <label class="inline-code"><code>for i <select id="blank2"><option value="">___</option><option>in</option><option>of</option><option>while</option><option>==</option></select> range(3):</code><small>Три раза выполнить действие</small></label>
-          <label class="inline-code"><code>balance <select id="blank3"><option value="">___</option><option>+=</option><option>=+</option><option>++</option><option>+</option></select> 500</code><small>Пополнить баланс на 500</small></label>
-          <label class="inline-code"><code>return amount <select id="blank4"><option value="">___</option><option>*</option><option>+</option><option>//</option><option>in</option></select> 0.01</code><small>Вернуть комиссию 1%</small></label>
+      <section class="station card" id="transactions">
+        <div class="station-head"><span class="station-no">03</span><div><span class="eyebrow">09:05 • поток операций</span><h2>Теперь нужно быстро проверить пачку транзакций</h2></div></div>
+        <div class="employee-dialog">
+          <div class="avatar sonya">С</div>
+          <div><strong>Соня</strong><p>Вручную смотреть сотни строк бессмысленно. Представь, что положительные числа - пополнения, отрицательные - списания. Нам нужно пройти по списку и найти то, что интересно.</p></div>
         </div>
-      </section>
+        <div class="data-strip"><span>operations =</span><b>+1200</b><b>-450</b><b>-9000</b><b>+500</b><b>-120</b><b>+7000</b></div>
 
-      <section class="station card" id="sequence">
-        <div class="station-head"><span class="station-no">04</span><div><span class="eyebrow">Отчёт за день</span><h2>Восстанови порядок строк</h2></div></div>
-        <p class="hint">Скрипт должен посчитать сумму только положительных операций. Переставь строки кнопками.</p>
-        <div id="sequenceList" class="sequence-list"></div>
-      </section>
-
-      <section class="station card" id="data">
-        <div class="station-head"><span class="station-no">05</span><div><span class="eyebrow">Хранилище данных</span><h2>Списки и словари клиентов</h2></div></div>
         <div class="mini-grid">
+          <div class="mini-q"><p>Какой цикл естественнее использовать, чтобы проверить каждый элемент списка?</p><div class="answers"><label><input type="radio" name="loop1" value="for"><span>for</span></label><label><input type="radio" name="loop1" value="while"><span>while</span></label><label><input type="radio" name="loop1" value="if"><span>if</span></label></div></div>
+          <div class="mini-q"><p>Что выведет этот код?</p><pre><code>count = 0
+for amount in [-20, 50, -10]:
+    if amount &lt; 0:
+        count += 1
+print(count)</code></pre><div class="answers"><label><input type="radio" name="loop2" value="2"><span>2</span></label><label><input type="radio" name="loop2" value="3"><span>3</span></label><label><input type="radio" name="loop2" value="-30"><span>-30</span></label></div></div>
+        </div>
+
+        <div class="sequence-box">
+          <p class="case-title">Собери отчёт: скрипт должен посчитать сумму только положительных операций.</p>
+          <div id="sequenceList" class="sequence-list"></div>
+        </div>
+
+        <div class="code-question">
+          <p class="case-title">Какая строка добавит новую операцию <code>-250</code> в конец списка <code>operations</code>?</p>
+          <div class="answers vertical"><label><input type="radio" name="list1" value="append"><span><code>operations.append(-250)</code></span></label><label><input type="radio" name="list1" value="add"><span><code>operations.add(-250)</code></span></label><label><input type="radio" name="list1" value="push"><span><code>operations.push(-250)</code></span></label></div>
+        </div>
+      </section>
+
+      <section class="station card" id="client-data">
+        <div class="station-head"><span class="station-no">04</span><div><span class="eyebrow">09:45 • клиентское хранилище</span><h2>Мира просит восстановить карточки клиентов</h2></div></div>
+        <div class="employee-dialog">
+          <div class="avatar mira">М</div>
+          <div><strong>Мира</strong><p>Список хорош, когда важен порядок. Но у клиента много связанных полей: имя, тариф, баланс, статус. Здесь удобнее обращаться к значению по понятному ключу.</p></div>
+        </div>
+        <button type="button" class="window-button story-open" data-window="dictionaryWindow">Открыть запись из базы</button>
+
+        <div class="mini-grid">
+          <div class="mini-q"><p>Как получить баланс клиента из словаря <code>client</code>?</p><div class="answers vertical"><label><input type="radio" name="dict1" value="key"><span><code>client["balance"]</code></span></label><label><input type="radio" name="dict1" value="index"><span><code>client[2]</code></span></label><label><input type="radio" name="dict1" value="balance"><span><code>client.balance()</code></span></label></div></div>
+          <div class="mini-q"><p>Как безопасно получить поле <code>cashback</code>, а если его нет - вернуть 0?</p><div class="answers vertical"><label><input type="radio" name="dict2" value="get"><span><code>client.get("cashback", 0)</code></span></label><label><input type="radio" name="dict2" value="find"><span><code>client.find("cashback")</code></span></label><label><input type="radio" name="dict2" value="index"><span><code>client["cashback", 0]</code></span></label></div></div>
+          <div class="mini-q"><pre><code>client = {"name": "Лев", "vip": True}
+print(client["name"] if client["vip"] else "обычный")</code></pre><div class="answers"><label><input type="radio" name="dict3" value="Лев"><span>Лев</span></label><label><input type="radio" name="dict3" value="обычный"><span>обычный</span></label><label><input type="radio" name="dict3" value="True"><span>True</span></label></div></div>
           <div class="mini-q"><pre><code>balances = {"A101": 5000, "A102": 8200}
 balances["A101"] += 700
-print(balances["A101"])</code></pre><div class="answers"><label><input type="radio" name="data1" value="5700"><span>5700</span></label><label><input type="radio" name="data1" value="5000"><span>5000</span></label><label><input type="radio" name="data1" value="error"><span>Ошибка</span></label></div></div>
-          <div class="mini-q"><p>Как добавить <code>name</code> в конец списка <code>clients</code>?</p><div class="answers vertical"><label><input type="radio" name="data2" value="append"><span><code>clients.append(name)</code></span></label><label><input type="radio" name="data2" value="add"><span><code>clients.add(name)</code></span></label><label><input type="radio" name="data2" value="push"><span><code>clients.push(name)</code></span></label></div></div>
-          <div class="mini-q"><p>Как безопасно получить баланс, а если счёта нет - вернуть 0?</p><div class="answers vertical"><label><input type="radio" name="data3" value="get"><span><code>balances.get(account, 0)</code></span></label><label><input type="radio" name="data3" value="index"><span><code>balances[account, 0]</code></span></label><label><input type="radio" name="data3" value="find"><span><code>balances.find(account)</code></span></label></div></div>
-          <div class="mini-q"><pre><code>tx = [120, -50, 300, -20]
-print(tx[1:3])</code></pre><div class="answers vertical"><label><input type="radio" name="data4" value="[-50, 300]"><span>[-50, 300]</span></label><label><input type="radio" name="data4" value="[120, -50, 300]"><span>[120, -50, 300]</span></label><label><input type="radio" name="data4" value="[-50, 300, -20]"><span>[-50, 300, -20]</span></label></div></div>
+print(balances["A101"])</code></pre><div class="answers"><label><input type="radio" name="dict4" value="5700"><span>5700</span></label><label><input type="radio" name="dict4" value="5000"><span>5000</span></label><label><input type="radio" name="dict4" value="error"><span>Ошибка</span></label></div></div>
         </div>
       </section>
 
-      <section class="station card" id="write-code">
-        <div class="station-head"><span class="station-no">06</span><div><span class="eyebrow">Отдел автоматизации</span><h2>Три коротких фрагмента кода</h2></div></div>
-        <p class="hint">Здесь не нужен большой проект. Напиши минимальный рабочий фрагмент.</p>
-        <label class="code-editor"><span><b>1.</b> Есть переменные <code>amount</code> и <code>limit</code>. Выведи <code>APPROVE</code>, если сумма положительная и не превышает лимит. Иначе выведи <code>CHECK</code>.</span><textarea id="code1" spellcheck="false" placeholder="if ...:
-    print(...)" rows="5"></textarea></label>
-        <label class="code-editor"><span><b>2.</b> Есть список <code>transactions</code>. Выведи только отрицательные операции.</span><textarea id="code2" spellcheck="false" placeholder="for ... in ...:
-    if ...:
-        print(...)" rows="5"></textarea></label>
-        <label class="code-editor"><span><b>3.</b> Есть словарь <code>clients</code>. Напиши функцию <code>get_balance(account)</code>, которая возвращает баланс по ключу, а если ключа нет - 0.</span><textarea id="code3" spellcheck="false" placeholder="def get_balance(account):
-    return ..." rows="5"></textarea></label>
+      <section class="station card" id="call-log">
+        <div class="station-head"><span class="station-no">05</span><div><span class="eyebrow">10:18 • колл-центр</span><h2>Тимур прислал грязные текстовые данные</h2></div></div>
+        <div class="employee-dialog">
+          <div class="avatar timur">Т</div>
+          <div><strong>Тимур, менеджер продукта</strong><p>Операторы копируют номера заявок кто как: кто-то пишет большими буквами, кто-то добавляет пробелы. Нужно быстро разобрать строки, чтобы система снова находила заявки автоматически.</p></div>
+        </div>
+        <button type="button" class="window-button story-open" data-window="callWindow">Открыть сообщение оператора</button>
+
+        <div class="mini-grid">
+          <div class="mini-q"><pre><code>ticket = " bank-204 "
+print(ticket.strip().upper())</code></pre><div class="answers"><label><input type="radio" name="str1" value="BANK-204"><span>BANK-204</span></label><label><input type="radio" name="str1" value=" bank-204 "><span> bank-204 </span></label><label><input type="radio" name="str1" value="204"><span>204</span></label></div></div>
+          <div class="mini-q"><pre><code>code = "BANK-204"
+print(code.split("-")[1])</code></pre><div class="answers"><label><input type="radio" name="str2" value="204"><span>204</span></label><label><input type="radio" name="str2" value="BANK"><span>BANK</span></label><label><input type="radio" name="str2" value="BANK-204"><span>BANK-204</span></label></div></div>
+          <div class="mini-q"><p>Как проверить, встречается ли слово <code>fraud</code> в строке <code>message</code>?</p><div class="answers vertical"><label><input type="radio" name="str3" value="in"><span><code>"fraud" in message</code></span></label><label><input type="radio" name="str3" value="contains"><span><code>message contains "fraud"</code></span></label><label><input type="radio" name="str3" value="equal"><span><code>message == "fraud"</code></span></label></div></div>
+          <div class="mini-q"><p>Как узнать длину строки <code>account</code>?</p><div class="answers"><label><input type="radio" name="str4" value="len"><span><code>len(account)</code></span></label><label><input type="radio" name="str4" value="size"><span><code>account.size()</code></span></label><label><input type="radio" name="str4" value="count"><span><code>count(account)</code></span></label></div></div>
+        </div>
+      </section>
+
+      <section class="station card" id="debug-room">
+        <div class="station-head"><span class="station-no">06</span><div><span class="eyebrow">10:48 • аварийная комната</span><h2>После обновления три старых скрипта не запускаются</h2></div></div>
+        <div class="employee-dialog danger-dialog">
+          <div class="avatar kirill">К</div>
+          <div><strong>Кирилл</strong><p>Вот здесь уже настоящий рабочий момент: код не делает ничего полезного, пока не исправим ошибку. Не переписывай всё - найди минимальное исправление.</p></div>
+        </div>
+
+        <div class="repair-grid">
+          <label class="repair-card"><span>Скрипт 1 • проверка лимита</span><code>if amount &gt; limit<br>&nbsp;&nbsp;&nbsp;&nbsp;print("REVIEW")</code><select id="bug1"><option value="">Что исправить?</option><option value="colon">Добавить : после условия</option><option value="brackets">Убрать скобки print</option><option value="equal">Заменить &gt; на =</option></select></label>
+          <label class="repair-card"><span>Скрипт 2 • цикл операций</span><code>for amount operations:<br>&nbsp;&nbsp;&nbsp;&nbsp;print(amount)</code><select id="bug2"><option value="">Что пропущено?</option><option value="in">in</option><option value="while">while</option><option value="range">range</option></select></label>
+          <label class="repair-card"><span>Скрипт 3 • пополнение</span><code>balance = 1000<br>balance =+ 500<br>print(balance)</code><select id="bug3"><option value="">Какой оператор нужен?</option><option value="plusEquals">+=</option><option value="doublePlus">++</option><option value="plus">+</option></select></label>
+          <label class="repair-card"><span>Скрипт 4 • функция комиссии</span><code>def fee(amount):<br>&nbsp;&nbsp;&nbsp;&nbsp;amount * 0.01</code><select id="bug4"><option value="">Чего не хватает?</option><option value="return">return</option><option value="print">print обязательно</option><option value="global">global</option></select></label>
+        </div>
+      </section>
+
+      <section class="station card" id="functions">
+        <div class="station-head"><span class="station-no">07</span><div><span class="eyebrow">11:12 • автоматизация</span><h2>Повторяющуюся логику пора вынести в функции</h2></div></div>
+        <div class="employee-dialog">
+          <div class="avatar mira">М</div>
+          <div><strong>Мира</strong><p>Если одна и та же проверка встречается в пяти местах, копировать её опасно. Давай оформим её один раз и будем вызывать с разными данными.</p></div>
+        </div>
+        <div class="mini-grid">
+          <div class="mini-q"><p>Какая строка правильно объявляет функцию с параметром <code>amount</code>?</p><div class="answers vertical"><label><input type="radio" name="func1" value="def"><span><code>def check(amount):</code></span></label><label><input type="radio" name="func1" value="function"><span><code>function check(amount)</code></span></label><label><input type="radio" name="func1" value="check"><span><code>check = amount:</code></span></label></div></div>
+          <div class="mini-q"><pre><code>def fee(amount):
+    return amount * 0.01
+
+print(fee(2000))</code></pre><div class="answers"><label><input type="radio" name="func2" value="20"><span>20</span></label><label><input type="radio" name="func2" value="200"><span>200</span></label><label><input type="radio" name="func2" value="0.01"><span>0.01</span></label></div></div>
+          <div class="mini-q"><p>Что делает <code>return</code>?</p><div class="answers vertical"><label><input type="radio" name="func3" value="returns"><span>Возвращает результат из функции</span></label><label><input type="radio" name="func3" value="prints"><span>Всегда печатает результат</span></label><label><input type="radio" name="func3" value="restarts"><span>Запускает функцию заново</span></label></div></div>
+          <div class="mini-q"><p>Как вызвать <code>check_limit</code> для суммы 7000?</p><div class="answers"><label><input type="radio" name="func4" value="call"><span><code>check_limit(7000)</code></span></label><label><input type="radio" name="func4" value="defcall"><span><code>def check_limit(7000)</code></span></label><label><input type="radio" name="func4" value="brackets"><span><code>check_limit[7000]</code></span></label></div></div>
+        </div>
+      </section>
+
+      <section class="station card" id="final-incident">
+        <div class="station-head"><span class="station-no">08</span><div><span class="eyebrow">11:38 • финальный инцидент</span><h2>Команда отдаёт тебе маленькую самостоятельную задачу</h2></div></div>
+        <div class="incident-banner">
+          <div><b>INC-381</b><span>Панель мониторинга потеряла часть проверок</span></div><span class="incident-status">нужен фикс</span>
+        </div>
+        <div class="employee-dialog">
+          <div class="avatar mira">М</div>
+          <div><strong>Мира</strong><p>Здесь уже без вариантов ответа. Не нужно писать идеальный продакшен-код - достаточно короткого понятного решения. Я хочу увидеть, как ты сам собираешь конструкции вместе.</p></div>
+        </div>
+
+        <label class="code-editor"><span><b>Задача A.</b> У банка есть <code>amount</code> и <code>limit</code>. Выведи <code>APPROVE</code>, если сумма положительная и не превышает лимит. Иначе выведи <code>CHECK</code>.</span><textarea id="code1" spellcheck="false" rows="6" placeholder="if ...:\n    print(...)\nelse:\n    ..."></textarea></label>
+        <label class="code-editor"><span><b>Задача B.</b> Есть список <code>transactions</code>. Выведи только отрицательные операции.</span><textarea id="code2" spellcheck="false" rows="6" placeholder="for ... in ...:\n    if ...:\n        print(...)"></textarea></label>
+        <label class="code-editor"><span><b>Задача C.</b> Есть словарь <code>clients</code>, где ключ - номер счёта, значение - баланс. Напиши функцию <code>get_balance(account)</code>, которая возвращает баланс, а если счёта нет - 0.</span><textarea id="code3" spellcheck="false" rows="6" placeholder="def get_balance(account):\n    return ..."></textarea></label>
+      </section>
+
+      <section class="station card" id="reflection">
+        <div class="station-head"><span class="station-no">09</span><div><span class="eyebrow">11:58 • смена почти закончена</span><h2>Последнее сообщение от команды</h2></div></div>
+        <div class="employee-dialog success-dialog">
+          <div class="avatar mira">М</div>
+          <div><strong>Мира</strong><p>Готово. Теперь мне важно понять не только ответы, но и твои ощущения. Иногда человек знает меньше синтаксиса, но отлично разбирается в логике. Иногда наоборот. Это тоже часть диагностики.</p></div>
+        </div>
+        <div class="question-block">
+          <h3>Как ты чувствуешь себя после этой смены?</h3>
+          <div class="emotion-grid" data-group="endMood">
+            <label><input type="radio" name="endMood" value="Было легко"><span><b>😎</b> Было легко, хочется сложнее</span></label>
+            <label><input type="radio" name="endMood" value="Нормальный вызов"><span><b>🙂</b> Нормальный вызов, большую часть понял</span></label>
+            <label><input type="radio" name="endMood" value="Местами сложно"><span><b>🤔</b> Местами было сложно, но интересно</span></label>
+            <label><input type="radio" name="endMood" value="Сложно"><span><b>😵‍💫</b> Пока сложно, многое было незнакомо</span></label>
+          </div>
+        </div>
+        <div class="question-block">
+          <h3>Какая часть смены понравилась больше?</h3>
+          <div class="chips" data-group="favoritePart">
+            <label><input type="radio" name="favoritePart" value="Условия"><span>Разбирать ситуации и условия</span></label>
+            <label><input type="radio" name="favoritePart" value="Данные"><span>Списки и словари</span></label>
+            <label><input type="radio" name="favoritePart" value="Отладка"><span>Искать ошибки</span></label>
+            <label><input type="radio" name="favoritePart" value="Писать код"><span>Писать код самому</span></label>
+          </div>
+        </div>
       </section>
 
       <section class="finish card" id="finish">
-        <div><span class="eyebrow">Конец смены</span><h2>Передать отчёт наставнику</h2><p>Проверь, что указал имя. После отправки увидишь краткий результат по темам.</p></div>
-        <button type="button" class="primary" id="finishButton">Завершить диагностику</button>
+        <div><span class="eyebrow">12:00 • конец смены</span><h2>Передать технический отчёт</h2><p>Ответы сохраняются в браузере. После завершения появится карта тем: что уже получается уверенно, а где стоит дать ученику опору.</p></div>
+        <button type="button" class="primary" id="finishButton">Завершить смену</button>
         <p id="sendStatus" class="status" aria-live="polite"></p>
       </section>
     </form>
 
     <section class="result card" id="resultView" hidden>
-      <div class="station-head"><span class="station-no">✓</span><div><span class="eyebrow">Отчёт готов</span><h2 id="resultTitle">Результат</h2></div></div>
-      <div class="score-ring"><strong id="scorePercent">0%</strong><span id="scoreFraction">0/30</span></div>
-      <div id="levelBadge" class="level-badge"></div>
+      <div class="station-head"><span class="station-no">✓</span><div><span class="eyebrow">Технический отчёт</span><h2>Карта навыков после смены</h2></div></div>
+      <div class="result-hero"><div class="score-ring"><strong id="scorePercent">0%</strong><span id="scoreFraction">0/40</span></div><div><div id="levelBadge" class="level-badge"></div><p id="moodSummary" class="result-note"></p></div></div>
       <div id="topicReport" class="topic-report"></div>
       <div class="result-actions"><button type="button" class="secondary" id="copyResult">Скопировать краткий результат</button><button type="button" class="secondary" id="backButton">Вернуться к ответам</button></div>
       <p id="copyStatus" class="status" aria-live="polite"></p>
     </section>
   </main>
 
-  <footer>ByteBank • диагностический рабочий лист Python</footer>
+  <div class="story-modal" id="storyModal" hidden>
+    <div class="modal-backdrop" data-close-modal></div>
+    <section class="modal-window" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-bar"><span id="modalTitle">ByteBank</span><button type="button" data-close-modal aria-label="Закрыть">×</button></div>
+      <div class="modal-content" id="modalContent"></div>
+    </section>
+  </div>
+
+  <template id="briefingWindow"><div class="fake-chat"><div class="chat-head"><span class="online-dot"></span><b>Мира • automation-team</b><small>07:59</small></div><p>Доброе утро! Ночью после релиза у нас три инцидента. Начни с банкомата №17, потом зайди к Соне в антифрод. Если останется время - помоги с выгрузкой колл-центра.</p><p>И да: здесь можно ошибаться. Нам важнее увидеть ход мыслей, чем идеальное знание всех команд.</p></div></template>
+  <template id="atmLogWindow"><div class="log-window"><div><span>08:04:11</span> CARD 4412 • balance=5200 • request=1500 • <b class="ok">APPROVED</b></div><div><span>08:04:45</span> CARD 1038 • balance=900 • request=1200 • <b class="bad">DECLINED</b></div><div><span>08:05:17</span> CARD 9981 • pin_attempt=2 • <b class="warn">RETRY</b></div><div><span>08:05:51</span> CARD 4412 • request=300 • <b class="bad">DECLINED?</b></div></div></template>
+  <template id="clientCardWindow"><div class="client-window"><div class="client-top"><div class="avatar sonya">МК</div><div><b>Марина К.</b><small>клиент 4 года • обычно активность низкая</small></div></div><dl><div><dt>Сумма</dt><dd>75 000 ₽</dd></div><div><dt>Лимит</dt><dd>50 000 ₽</dd></div><div><dt>Устройство</dt><dd>новое</dd></div><div><dt>Подтверждение</dt><dd>получено</dd></div></dl></div></template>
+  <template id="dictionaryWindow"><div class="database-window"><pre><code>client = {
+    "account": "A101",
+    "name": "Лев",
+    "balance": 5700,
+    "vip": True,
+    "city": "Новосибирск"
+}</code></pre><p>Запись из тестовой базы. Поля можно получать по ключам, например <code>client["name"]</code>.</p></div></template>
+  <template id="callWindow"><div class="fake-chat"><div class="chat-head"><span class="online-dot"></span><b>Оператор 12</b><small>10:16</small></div><p>Не могу найти заявку. Клиент продиктовал: <code> bank-204 </code>. В CRM она почему-то записана как <code>BANK-204</code>. Можно ли привести такие строки к одному виду автоматически?</p></div></template>
+
+  <footer>ByteBank • сюжетная диагностика Python</footer>
   <script src="script.js"></script>
 </body>
 </html>
