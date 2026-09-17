@@ -8,14 +8,14 @@ function doPost(e) {
 
   sheet.appendRow([
     data.timestamp || new Date().toISOString(),
-    data.name || '',
-    data.grade || '',
-    data.age || '',
+    data.sessionId || '',
+    data.startMood || '',
+    data.debugReaction || '',
     data.experience || '',
-    data.learnedWhere || '',
-    data.selfLevel || '',
     data.interests || '',
     data.goal || '',
+    data.endMood || '',
+    data.favoritePart || '',
     data.minutes || '',
     t.basics || '',
     t.conditions || '',
@@ -24,10 +24,11 @@ function doPost(e) {
     t.lists || '',
     t.dicts || '',
     t.functions || '',
+    t.debugging || '',
     t.reading || '',
     t.writing || '',
     data.total || 0,
-    data.max || 30,
+    data.max || 40,
     data.percent || 0,
     data.level || '',
     data.strong || '',
@@ -35,8 +36,7 @@ function doPost(e) {
     data.code1 || '',
     data.code2 || '',
     data.code3 || '',
-    data.answersJson || '',
-    data.userAgent || ''
+    data.answersJson || ''
   ]);
 
   return ContentService
