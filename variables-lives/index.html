@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Переменная: запомни меня!</title>
+<style>
+:root{
+  --ink:#332e3b;--paper:#fff;--bg:#fffaf2;--line:#e7dfec;
+  --yellow:#f9b233;--blue:#6aa7dd;--green:#94c122;--rasp:#b71652;
+  --violet:#7652eb;--softv:#f1ecff;--softy:#fff6d9;--softg:#eef8dc;
+  --muted:#746d7b;--shadow:0 18px 48px rgba(51,46,59,.10)
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Manrope,Inter,"Segoe UI",Arial,sans-serif;color:var(--ink);
+background:
+radial-gradient(circle at 8% 0,rgba(249,178,51,.22),transparent 24%),
+radial-gradient(circle at 100% 0,rgba(106,167,221,.20),transparent 28%),
+#fff;}
+button{font:inherit}
+.wrap{width:min(1160px,calc(100% - 28px));margin:auto}
+.top{position:sticky;top:0;z-index:20;background:rgba(51,46,59,.97);color:#fff;box-shadow:0 8px 24px rgba(0,0,0,.12)}
+.topin{display:flex;align-items:center;gap:14px;padding:10px 0}
+.brand{font-weight:950;white-space:nowrap}.brand b{color:var(--yellow)}
+.prog{flex:1;height:9px;background:#ffffff22;border-radius:99px;overflow:hidden}.prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--yellow),#ffd86b,var(--green));transition:.3s}
+.score{background:#ffffff14;border:1px solid #ffffff1c;padding:7px 11px;border-radius:999px;font-weight:900}
+.hero{margin:34px 0 22px;border-radius:32px;background:linear-gradient(135deg,#2d2734,#51425e);color:#fff;min-height:330px;padding:42px;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.hero:after{content:"🧠";position:absolute;right:6%;top:36px;font-size:150px;opacity:.18;transform:rotate(-8deg)}
+.ey{font-size:12px;letter-spacing:.13em;text-transform:uppercase;font-weight:900;color:var(--yellow)}
+h1{font-size:clamp(46px,7vw,82px);line-height:.92;letter-spacing:-.055em;margin:14px 0}
+.hero p{font-size:18px;line-height:1.6;color:#e9e4ec;max-width:760px}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}.tag{padding:7px 10px;border-radius:999px;border:1px solid #ffffff22;background:#ffffff10;font-size:12px;font-weight:800}
+.section{margin:22px 0;background:#fff;border:1px solid var(--line);border-radius:27px;padding:27px;box-shadow:0 10px 26px rgba(51,46,59,.05)}
+.head{display:flex;justify-content:space-between;gap:20px;align-items:end}.n{font-size:11px;letter-spacing:.12em;font-weight:900;color:var(--violet)}h2{font-size:clamp(29px,3.7vw,44px);margin:4px 0}.head p{margin:0;max-width:520px;color:var(--muted);line-height:1.55}
+.call{margin:16px 0;padding:14px 16px;border-radius:16px;background:var(--softy);border:1px solid #ead58c;border-left:5px solid var(--yellow);font-size:14px;line-height:1.55}
+.situations{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.sit{border:1px solid var(--line);border-radius:20px;padding:18px;background:#fff;min-width:0}
+.sit:nth-child(1){background:#f2f8ff}.sit:nth-child(2){background:#f4f1ff}.sit:nth-child(3){background:#eef8ea}
+.icon{font-size:46px}.sit h3{font-size:20px;margin:8px 0}.sit p{color:#625b69;line-height:1.5;min-height:68px}
+.choice{display:grid;grid-template-columns:1fr 1fr;gap:8px}.choice button{border:2px solid #e5deeb;background:#fff;border-radius:13px;padding:11px;font-weight:900;cursor:pointer}.choice button.active{border-color:var(--violet);background:#eee8ff}.choice button.correct{border-color:#68b778;background:#eff9f1}.choice button.wrong{border-color:#e87982;background:#fff1f1}
+.feedback{margin-top:10px;min-height:46px;font-size:12px;line-height:1.45;color:var(--muted)}
+.demo{display:grid;grid-template-columns:.95fr 1.05fr;gap:18px;align-items:stretch}
+.machine{background:linear-gradient(160deg,#302839,#51435d);border-radius:24px;padding:22px;color:#fff;position:relative;overflow:hidden}
+.machine:before{content:"";position:absolute;width:210px;height:210px;border-radius:50%;right:-80px;top:-60px;background:rgba(249,178,51,.16)}
+.varcard{position:relative;z-index:2;background:#fff;color:var(--ink);border-radius:22px;padding:22px;max-width:420px;margin:auto;box-shadow:0 20px 40px rgba(0,0,0,.2)}
+.vlabel{font-size:12px;font-weight:900;letter-spacing:.09em;text-transform:uppercase;color:var(--rasp)}
+.vname{font-size:28px;font-weight:950;margin-top:4px}.value{font-size:clamp(82px,12vw,128px);font-weight:950;line-height:1;color:var(--violet);text-align:center;margin:20px 0}
+.hearts{font-size:35px;text-align:center;letter-spacing:5px;min-height:47px}
+.mem{background:#f3eef7;border-radius:14px;padding:12px;margin-top:14px;font-size:12px;line-height:1.5}.mem b{color:var(--violet)}
+.controls{border:1px solid var(--line);border-radius:24px;padding:22px;background:#fbf9fd}.controls h3{font-size:22px;margin:0 0 7px}.controls p{color:var(--muted);font-size:13px;line-height:1.5}
+.cmds{display:grid;gap:10px;margin:18px 0}.cmd{border:0;border-radius:15px;padding:14px 16px;text-align:left;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px}.cmd b{font-family:Consolas,monospace}.cmd.set{background:#ffb347;color:#3c2913}.cmd.change{background:#ff8f52;color:#431d0d}.cmd:disabled{opacity:.38;cursor:not-allowed}
+.step{background:#fff;border:1px solid var(--line);border-radius:15px;padding:13px 14px;margin-top:8px;display:grid;grid-template-columns:38px 1fr;gap:10px;align-items:start}.stepnum{width:34px;height:34px;border-radius:10px;background:var(--softv);display:grid;place-items:center;font-weight:950;color:var(--violet)}.step b{display:block}.step small{color:var(--muted);line-height:1.4}
+.question{margin-top:15px;padding:14px;border-radius:15px;background:#eef5ff;border:1px solid #cfe1f3}.question strong{display:block;margin-bottom:8px}.qopts{display:flex;gap:8px;flex-wrap:wrap}.qopts button{border:1px solid #cbd7e5;background:#fff;border-radius:11px;padding:9px 13px;font-weight:850;cursor:pointer}.qopts button.ok{background:#eef9ef;border-color:#6ab878}.qopts button.no{background:#fff0f0;border-color:#e68288}
+.log{margin-top:15px}.log h3{font-size:18px;margin-bottom:9px}.logrow{display:grid;grid-template-columns:70px 1fr 80px;gap:9px;align-items:center;border-top:1px solid #eee8f2;padding:9px 0;font-size:13px}.logrow:first-of-type{border-top:0}.old{color:var(--muted)}.new{font-weight:950;color:var(--violet)}
+.concept{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:8px;align-items:center;background:var(--ink);color:#fff;border-radius:20px;padding:18px}.concept div{background:#ffffff0f;border:1px solid #ffffff14;border-radius:14px;padding:14px;text-align:center}.concept b{display:block;color:var(--yellow);font-size:13px;margin-bottom:3px}.arrow{font-size:24px;color:var(--yellow);font-weight:950}
+.finish{display:none;margin:24px 0;padding:28px;border-radius:25px;background:linear-gradient(135deg,#302839,#654b7a);color:#fff;text-align:center}.finish.show{display:block}.finish .stars{font-size:42px}.finish h2{font-size:40px;margin:5px 0}.btn{border:0;border-radius:13px;padding:11px 16px;font-weight:900;cursor:pointer}.primary{background:var(--yellow);color:#332e3b}.soft{background:#eee9f2;color:var(--ink)}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}.status{font-size:13px;color:var(--muted);font-weight:750}
+.conf{position:fixed;inset:0;pointer-events:none;z-index:99}.piece{position:absolute;top:-20px;width:9px;height:16px;border-radius:2px;animation:fall 1.8s linear forwards}@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:18px 0 50px}
+@media(max-width:860px){.situations{grid-template-columns:1fr}.demo{grid-template-columns:1fr}.concept{grid-template-columns:1fr}.arrow{transform:rotate(90deg)}.head{display:block}.head p{margin-top:6px}}
+@media(max-width:520px){.hero{padding:27px 22px}.hero:after{display:none}.section{padding:19px}.choice{grid-template-columns:1fr}.logrow{grid-template-columns:55px 1fr 55px}}
+</style>
+</head>
+<body>
+<div class="top"><div class="wrap topin"><div class="brand">Scratch: <b>переменная</b></div><div class="prog"><i id="bar"></i></div><div class="score">⭐ <span id="score">0</span></div></div></div>
+<div class="wrap">
+<section class="hero"><div class="ey">Мини-игра · память программы</div><h1>Запомни меня!</h1><p>Разберись, где программе нужна переменная, а потом управляй значением Жизней и следи, как Scratch хранит только актуальное состояние.</p><div class="tags"><span class="tag">🧠 память</span><span class="tag">❤️ жизни</span><span class="tag">🟧 установить</span><span class="tag">🔁 изменить</span></div></section>
+
+<section class="section"><div class="head"><div><div class="n">МИССИЯ 01</div><h2>Где нужна переменная?</h2></div><p>Нажми «Нужна» или «Не нужна». Смотри не на важность данных, а на то, меняется ли значение во время игры.</p></div>
+<div class="call"><b>Главная идея:</b> переменная особенно полезна там, где программе нужно помнить значение, которое может изменяться.</div>
+<div class="situations">
+<article class="sit" data-answer="no"><div class="icon">🎨</div><h3>Цвет фона</h3><p>Цвет фона всегда один и тот же.</p><div class="choice"><button type="button" data-v="yes">Нужна</button><button type="button" data-v="no">Не нужна</button></div><div class="feedback" aria-live="polite"></div></article>
+<article class="sit" data-answer="yes"><div class="icon">❤️</div><h3>Жизни игрока</h3><p>У игрока осталось 2 жизни из 3.</p><div class="choice"><button type="button" data-v="yes">Нужна</button><button type="button" data-v="no">Не нужна</button></div><div class="feedback" aria-live="polite"></div></article>
+<article class="sit" data-answer="no"><div class="icon">🏷️</div><h3>Название проекта</h3><p>Название проекта не меняется во время игры.</p><div class="choice"><button type="button" data-v="yes">Нужна</button><button type="button" data-v="no">Не нужна</button></div><div class="feedback" aria-live="polite"></div></article>
+</div>
+<div class="actions"><button class="btn soft" id="reset1" type="button">Сбросить ответы</button><span class="status" id="status1">Ответь на все три ситуации.</span></div>
+</section>
+
+<section class="section"><div class="head"><div><div class="n">МИССИЯ 02</div><h2>Управляй памятью игры</h2></div><p>Выполни три команды по порядку и после каждой предскажи новое значение переменной <b>Жизни</b>.</p></div>
+<div class="demo">
+<div class="machine"><div class="varcard"><div class="vlabel">Переменная Scratch</div><div class="vname">Жизни</div><div class="value" id="value">?</div><div class="hearts" id="hearts">❔</div><div class="mem" id="memory">Память пока не инициализирована. Выполни первую команду.</div></div></div>
+<div class="controls"><h3>Командная панель</h3><p>Сначала выбери, каким станет значение, затем нажми команду.</p>
+<div class="step"><div class="stepnum">1</div><div><b>установить Жизни = 3</b><small>Команда записывает в переменную конкретное значение.</small></div></div>
+<div class="question" id="q1"><strong>Какое значение будет после команды?</strong><div class="qopts"><button type="button">1</button><button type="button">2</button><button type="button" data-correct="true">3</button></div></div>
+<div class="cmds"><button class="cmd set" id="cmd1" type="button" disabled><b>установить [Жизни] в 3</b><span>▶</span></button></div>
+<div class="step"><div class="stepnum">2</div><div><b>изменить Жизни на -1</b><small>Команда берёт текущее значение и уменьшает его на 1.</small></div></div>
+<div class="question" id="q2"><strong>Чему будут равны Жизни?</strong><div class="qopts"><button type="button">1</button><button type="button" data-correct="true">2</button><button type="button">3</button></div></div>
+<div class="cmds"><button class="cmd change" id="cmd2" type="button" disabled><b>изменить [Жизни] на -1</b><span>▶</span></button></div>
+<div class="step"><div class="stepnum">3</div><div><b>изменить Жизни на -1</b><small>Снова используем уже новое текущее значение.</small></div></div>
+<div class="question" id="q3"><strong>Какое значение останется?</strong><div class="qopts"><button type="button" data-correct="true">1</button><button type="button">2</button><button type="button">3</button></div></div>
+<div class="cmds"><button class="cmd change" id="cmd3" type="button" disabled><b>изменить [Жизни] на -1</b><span>▶</span></button></div>
+</div></div>
+<div class="log"><h3>История переменной</h3><div id="logrows"><div class="logrow"><span>Старт</span><span class="old">значение ещё не задано</span><span class="new">?</span></div></div></div>
+</section>
+
+<section class="section"><div class="head"><div><div class="n">ФИНАЛ</div><h2>Почему старое значение исчезает?</h2></div><p>Переменная хранит одно текущее значение. Новая команда обновляет его — следующее действие работает уже с новым состоянием.</p></div>
+<div class="concept"><div><b>Было</b><span>Жизни = 3</span></div><span class="arrow">→</span><div><b>Команда</b><span>изменить на -1</span></div><span class="arrow">→</span><div><b>Стало</b><span>Жизни = 2</span></div></div>
+<div class="call"><b>Фраза для закрепления:</b> переменная не хранит всю историю значений сама по себе — она хранит актуальное значение. Если нужна история, её нужно записывать отдельно.</div>
+<div class="actions"><button class="btn primary" id="finishBtn" type="button" disabled>Завершить миссию</button><span class="status" id="finishStatus">Сначала пройди две миссии.</span></div>
+</section>
+
+<div class="finish" id="finish"><div class="stars">⭐ ⭐ ⭐</div><h2>Хранитель памяти!</h2><p>Ты понимаешь, когда нужна переменная и как команды меняют её текущее значение.</p><button class="btn primary" id="again" type="button">Сыграть ещё раз</button></div>
+</div>
+<footer>Креайтивика · IT-Start · Scratch</footer><div class="conf" id="conf"></div>
+<script>
+(function(){
+const root=document;
+let score=0, mission1=false, mission2=false, answered=new Set(), stepDone=[false,false,false], current=null;
+const scoreEl=root.getElementById('score'),bar=root.getElementById('bar');
+function add(n){score+=n;scoreEl.textContent=score}
+function updateProgress(){const x=(mission1?1:0)+(mission2?1:0);bar.style.width=(x/2*100)+'%';const b=root.getElementById('finishBtn'),s=root.getElementById('finishStatus');if(x===2){b.disabled=false;s.textContent='Всё готово — можно завершать.'}}
+function confetti(n){const box=root.getElementById('conf'),cols=['#f9b233','#6aa7dd','#94c122','#b71652','#7652eb'];for(let i=0;i<n;i++){const p=document.createElement('i');p.className='piece';p.style.left=Math.random()*100+'vw';p.style.background=cols[i%cols.length];p.style.animationDelay=Math.random()*.35+'s';box.appendChild(p);setTimeout(()=>p.remove(),2200)}}
+
+root.querySelectorAll('.sit').forEach((card,idx)=>{
+ card.querySelectorAll('button').forEach(btn=>btn.addEventListener('click',()=>{
+   if(answered.has(idx))return;
+   const ok=btn.dataset.v===card.dataset.answer;
+   card.querySelectorAll('button').forEach(x=>x.classList.remove('active','correct','wrong'));
+   btn.classList.add(ok?'correct':'wrong');
+   const fb=card.querySelector('.feedback');
+   if(ok){
+     answered.add(idx);add(10);
+     fb.textContent=card.dataset.answer==='yes'?'Верно: число жизней меняется, поэтому программе нужно его запоминать.':'Верно: значение не меняется, отдельная переменная здесь не обязательна.';
+   }else{
+     fb.textContent='Подумай: это значение должно меняться во время игры?';
+     setTimeout(()=>btn.classList.remove('wrong'),550);
+   }
+   const st=root.getElementById('status1');
+   if(answered.size===3){mission1=true;st.textContent='Отлично! Все три ситуации разобраны. +30 ⭐';add(30);confetti(20);updateProgress()}
+   else st.textContent='Верных ответов: '+answered.size+' из 3.';
+ }));
+});
+root.getElementById('reset1').addEventListener('click',()=>{
+ answered.clear();mission1=false;
+ root.querySelectorAll('.sit button').forEach(b=>b.classList.remove('correct','wrong','active'));
+ root.querySelectorAll('.sit .feedback').forEach(f=>f.textContent='');
+ root.getElementById('status1').textContent='Ответь на все три ситуации.';
+ updateProgress();
+});
+
+function setupQuestion(qid,cmdid,step){
+ const q=root.getElementById(qid),cmd=root.getElementById(cmdid);
+ q.querySelectorAll('button').forEach(btn=>btn.addEventListener('click',()=>{
+   if(stepDone[step])return;
+   q.querySelectorAll('button').forEach(x=>x.classList.remove('ok','no'));
+   const ok=btn.dataset.correct==='true';
+   btn.classList.add(ok?'ok':'no');
+   if(ok){cmd.disabled=false;q.querySelectorAll('button').forEach(x=>x.disabled=true)}
+ }));
+}
+setupQuestion('q1','cmd1',0);setupQuestion('q2','cmd2',1);setupQuestion('q3','cmd3',2);
+
+function draw(v){root.getElementById('value').textContent=v===null?'?':v;root.getElementById('hearts').textContent=v===null?'❔':'❤️'.repeat(Math.max(0,v))+'🖤'.repeat(Math.max(0,3-v));root.getElementById('memory').innerHTML=v===null?'Память пока не инициализирована.':'Сейчас Scratch хранит: <b>Жизни = '+v+'</b>. Следующая команда будет работать именно с этим значением.'}
+function log(label,from,to){const row=document.createElement('div');row.className='logrow';row.innerHTML='<span>'+label+'</span><span class="old">'+(from===null?'не задано':'было '+from)+'</span><span class="new">'+to+'</span>';root.getElementById('logrows').appendChild(row)}
+function completeStep(i,label,next){
+ stepDone[i]=true;add(15);if(next)next.disabled=false;
+ if(stepDone.every(Boolean)){mission2=true;add(35);confetti(24);updateProgress()}
+}
+root.getElementById('cmd1').addEventListener('click',function(){if(stepDone[0])return;const old=current;current=3;draw(current);log('Команда 1',old,current);this.disabled=true;completeStep(0,'',null)});
+root.getElementById('cmd2').addEventListener('click',function(){if(stepDone[1]||!stepDone[0])return;const old=current;current=current-1;draw(current);log('Команда 2',old,current);this.disabled=true;completeStep(1,'',null)});
+root.getElementById('cmd3').addEventListener('click',function(){if(stepDone[2]||!stepDone[1])return;const old=current;current=current-1;draw(current);log('Команда 3',old,current);this.disabled=true;completeStep(2,'',null)});
+
+root.getElementById('finishBtn').addEventListener('click',()=>{root.getElementById('finish').classList.add('show');root.getElementById('finish').scrollIntoView({behavior:'smooth'});confetti(50)});
+root.getElementById('again').addEventListener('click',()=>location.reload());
+draw(null);
+})();
+</script>
+</body>
+</html>
